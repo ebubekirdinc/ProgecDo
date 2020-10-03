@@ -4,6 +4,7 @@ using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +13,7 @@ using ProgecDo.Localization;
 using ProgecDo.MultiTenancy;
 using ProgecDo.Web.Menus;
 using Microsoft.OpenApi.Models;
+using ProgecDo.Permissions;
 using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
@@ -20,9 +22,11 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
@@ -81,6 +85,28 @@ namespace ProgecDo.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
+            
+            Configure<RazorPagesOptions>(options =>
+            { 
+                // options.Conventions.AuthorizePage("/Projects/Index", ProgecDoPermissions.Projects.Default);
+                options.Conventions.AuthorizePage("/Index", ProgecDoPermissions.Projects.Default);
+                options.Conventions.AuthorizePage("/Projects/CreateModal", ProgecDoPermissions.Projects.Create);
+                options.Conventions.AuthorizePage("/Projects/EditModal", ProgecDoPermissions.Projects.Edit);
+                options.Conventions.AuthorizePage("/ProjectBoard/AssignUserToProjectModal", ProgecDoPermissions.Projects.AssignUserToProject);
+            });
+
+            ConfigureStyles();
+        }
+
+        private void ConfigureStyles()
+        {
+            Configure<AbpBundlingOptions>(options =>
+            {
+                options.StyleBundles.Configure(
+                    StandardBundles.Styles.Global, //The bundle name!
+                    bundleConfiguration => { bundleConfiguration.AddFiles("/styles/my-global-styles.css"); }
+                );
+            });
         }
 
         private void ConfigureUrls(IConfiguration configuration)

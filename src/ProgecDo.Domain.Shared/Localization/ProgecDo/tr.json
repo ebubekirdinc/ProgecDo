@@ -26,7 +26,7 @@
     "AssignUserToProject": "Bu projeye yeni bir kullanıcı ekleyin",
     "UserSuccessfullyAddedToProject": "Kullanıcı projeye eklendi",
 
-    "Permission:ProgecDo": "ProjMan",
+    "Permission:ProgecDo": "ProgecDo",
     "Permission:Projects": "Proje Yönetimi",
     "Permission:Projects.Create": "Yeni proje oluşturma",
     "Permission:Projects.Edit": "Proje bilgilerini düzenleme",

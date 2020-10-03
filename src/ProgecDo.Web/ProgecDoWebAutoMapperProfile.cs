@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProgecDo.Projects;
 
 namespace ProgecDo.Web
 {
@@ -7,6 +8,9 @@ namespace ProgecDo.Web
         public ProgecDoWebAutoMapperProfile()
         {
             //Define your AutoMapper configuration here for the Web project.
+            CreateMap<Pages.Projects.CreateModalModel.CreateProjectViewModel, CreateUpdateProjectDto>();
+            CreateMap<ProjectDto, Pages.Projects.EditModalModel.EditProjectViewModel>();
+            CreateMap<Pages.Projects.EditModalModel.EditProjectViewModel, CreateUpdateProjectDto>();
         }
     }
 }

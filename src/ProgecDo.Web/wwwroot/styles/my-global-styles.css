@@ -1,0 +1,23 @@
+﻿
+.breadcrumb {
+    background-color: inherit;
+}
+
+/*dropdown*/
+.my-dropdown-item:hover, .my-dropdown-item:focus {
+    background-color: #0069d9;
+    color: white;
+}
+
+.my-dropdown-item {
+    color: white;
+}
+
+.my-dropdown-button {
+    border-radius: 5px !important;
+}
+
+.my-dropdown-dropleft {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
