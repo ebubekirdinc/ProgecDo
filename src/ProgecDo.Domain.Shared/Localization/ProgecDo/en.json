@@ -1,0 +1,59 @@
+{
+  "culture": "en",
+  "texts": {
+    "Menu:Home": "Home",
+    "Welcome": "Welcome",
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "SuccessfullyDeleted": "Successfully deleted!",
+    "SuccessfullyUpdated": "Successfully updated!",
+    "SuccessfullyCreated": "Successfully created!",
+
+    "Users": "Users",
+
+    "NameOfTheProject": "Name of the project",
+    "AddABriefDescription": "Add a brief description. (Optional)",
+    "YourProjects": "Your Projects",
+    "NewProject": "Add a new project",
+    "EditProject": "Update the project",
+    "ProgecDo:00002": "There is already a project with the same title: {title}",
+    "ProgecDo:00003": "User is already added to the project",
+    "ProjectSuccessfullyCreated": "Project successfully created!",
+    "ProjectSuccessfullyUpdated": "Project successfully updated!",
+
+    "AssignUserToProject": "Assign a user to this project",
+    "UserSuccessfullyAddedToProject": "User successfully added to project",
+
+    "Permission:ProgecDo": "ProjMan",
+    "Permission:Projects": "Project Management",
+    "Permission:Projects.Create": "Creating new projects",
+    "Permission:Projects.Edit": "Editing the projects",
+    "Permission:Projects.Delete": "Deleting the projects",
+    "Permission:Projects.AssignUserToProject": "Assign user to project",
+
+    "Messages": "Messages",
+    "NewBoardMessage": "New message",
+    "EditBoardMessage": "Update your message",
+    "BoardMessageDeletionConfirmationMessage": "Are you sure to delete your message?",
+    "TitleOfTheBoardMessage": "Give a title",
+    "ContentOfTheBoardMessage": "Message content",
+
+    "Comments": "Comments",
+    "Comment": "Comment",
+    "AddAComment": "Add a comment",
+    "EditBoardMessageComment": "Update your comment",
+    "BoardMessageCommentDeletionConfirmationMessage": "Are you sure to delete your comment '{0}'?",
+
+    "Todos": "To-dos",
+
+    "Documents": "Documents",
+
+    "Chat": "Chat",
+
+    "Schedule": "Schedule",
+
+    "CheckIns": "Check-ins"
+  }
+}

@@ -1,0 +1,59 @@
+﻿{
+  "culture": "tr",
+  "texts": {
+    "Menu:Home": "Ana sayfa",
+    "Welcome": "Hoşgeldiniz",
+    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
+
+    "Edit": "Düzenle",
+    "Delete": "Sil",
+    "SuccessfullyDeleted": "Başarıyla silindi!",
+    "SuccessfullyUpdated": "Başarıyla düzenlendi!",
+    "SuccessfullyCreated": "Başarıyla eklendi!",
+
+    "Users": "Kullanıcılar",
+
+    "NameOfTheProject": "Projenin adı",
+    "AddABriefDescription": "Kısa bır açıklama ekleyin. (Opsiyonel)",
+    "YourProjects": "Projeleriniz",
+    "NewProject": "Yeni bir proje ekleyin",
+    "EditProject": "Projeyi düzenleyin",
+    "ProgecDo:00002": "Bu başlık: {title} ile açılmış bir proje zaten var",
+    "ProgecDo:00003": "Seçtiğiniz kullanıcı projeye zaten eklenmiş",
+    "ProjectSuccessfullyCreated": "Proje başarıyla eklendi!",
+    "ProjectSuccessfullyUpdated": "Proje başarıyla düzenlendi!",
+
+    "AssignUserToProject": "Bu projeye yeni bir kullanıcı ekleyin",
+    "UserSuccessfullyAddedToProject": "Kullanıcı projeye eklendi",
+
+    "Permission:ProgecDo": "ProjMan",
+    "Permission:Projects": "Proje Yönetimi",
+    "Permission:Projects.Create": "Yeni proje oluşturma",
+    "Permission:Projects.Edit": "Proje bilgilerini düzenleme",
+    "Permission:Projects.Delete": "Proje silme",
+    "Permission:Projects.AssignUserToProject": "Projeye kullanıcı ekleme",
+
+    "Messages": "Messajlar",
+    "NewBoardMessage": "Yeni mesaj",
+    "EditBoardMessage": "Mesajınızı düzenleyin",
+    "BoardMessageDeletionConfirmationMessage": "Mesajınız silinecek. Devam edilsin mi ?",
+    "TitleOfTheBoardMessage": "Mesajınızın başlığı",
+    "ContentOfTheBoardMessage": "Mesaj içeriği",
+
+    "Comments": "Yorumlar",
+    "Comment": "Yorum",
+    "AddAComment": "Bir yorum ekleyin",
+    "EditBoardMessageComment": "Yorumunuzu düzenleyin",
+    "BoardMessageCommentDeletionConfirmationMessage": "Yorumunuz: '{0}' silinecek. Devam edilsin mi ?",
+
+    "Todos": "Yapılacaklar",
+
+    "Documents": "Dokümanlar",
+
+    "Chat": "Sohbet",
+
+    "Schedule": "Program",
+
+    "CheckIns": "Takip"
+  }
+}
