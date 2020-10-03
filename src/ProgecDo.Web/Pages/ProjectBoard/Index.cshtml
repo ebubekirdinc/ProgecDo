@@ -1,0 +1,147 @@
+﻿@page
+@using Microsoft.Extensions.Localization
+@using ProgecDo.Localization
+@model ProgecDo.Web.Pages.ProjectBoard.Index
+@inject IStringLocalizer<ProgecDoResource> L
+
+@section styles
+{
+    <abp-style src="/Pages/ProjectBoard/ProjectBoard.css"/>
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/ProjectBoard/ProjectBoard.js"/>
+}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-center">
+        <h2>@Model.ProjectBoard.Title</h2>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-center">
+        <p>@Model.ProjectBoard.Description</p>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-center">
+        <a href="#" id="AssignUserToProjectButton" onclick="assignUserToProject('@Model.ProjectBoard.Id')" icon="plus">@L["AssignUserToProject"].Value</a>
+    </div>
+</div>
+
+<div class="card-deck">
+    <div class="card boardCard" id="messagesCard" data-id="@Model.ProjectBoard.Id">
+        <div class="card-body">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-9">
+                    <h3 class="card-title text-center">@L["Messages"].Value</h3>
+                </div>
+            </div>
+            <hr>
+
+            @foreach (var message in Model.ProjectBoard.BoardMessageDto.BoardMessageList)
+            {
+                <div class="row">
+                    <div class="col-md-1">
+                        <div class="namesContainer">
+                            <div class="namesText">
+                                @if (string.IsNullOrWhiteSpace(message.Name))
+                                {
+                                    <span> @Html.Raw(message.UserName?[0].ToString().ToUpper())</span>
+                                }
+                                else
+                                {
+                                    <span> @Html.Raw(message.Name?[0].ToString().ToUpper())@Html.Raw(message.Surname?[0].ToString().ToUpper())</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div>
+                            <b> @message.Title</b>
+                        </div>
+                        <div >
+                            <span class="card-subtitle text-muted">@Html.Raw(message.Content.Length < 10 ? message.Content : message.Content.Left(10)) </span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            }
+
+        </div>
+    </div>
+    <div class="card boardCard">
+        <div class="card-body">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-9">
+                    <h3 class="card-title text-center">@L["Todos"].Value</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex justify-content-center align-self-center">
+                <img src="img/coming-soon-hour-glass-4721933_640.png" width="100%" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card boardCard">
+        <div class="card-body">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-9">
+                    <h3 class="card-title text-center">@L["Documents"].Value</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex justify-content-center align-self-center">
+                <img src="img/coming-soon-hour-glass-4721933_640.png" width="100%" alt="">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card boardCard">
+        <div class="card-body">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-9">
+                    <h3 class="card-title text-center">@L["Chat"].Value</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex justify-content-center align-self-center">
+                <img src="img/coming-soon-hour-glass-4721933_640.png" width="100%" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card boardCard">
+        <div class="card-body">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-9">
+                    <h3 class="card-title text-center">@L["Schedule"].Value</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex justify-content-center align-self-center">
+                <img src="img/coming-soon-hour-glass-4721933_640.png" width="100%" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="card boardCard">
+        <div class="card-body">
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-9">
+                    <h3 class="card-title text-center">@L["CheckIns"].Value</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex justify-content-center align-self-center">
+                <img src="img/coming-soon-hour-glass-4721933_640.png" width="100%" alt="">
+            </div>
+        </div>
+    </div>
+</div>

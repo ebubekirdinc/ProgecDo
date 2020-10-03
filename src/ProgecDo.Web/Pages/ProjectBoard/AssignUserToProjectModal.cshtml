@@ -2,14 +2,16 @@
 @using Microsoft.Extensions.Localization
 @using ProgecDo.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
-@model ProgecDo.Web.Pages.Projects.CreateModalModel
+@model ProgecDo.Web.Pages.ProjectBoard.AssignUserToProjectModal
 @inject IStringLocalizer<ProgecDoResource> L
+
 @{
     Layout = null;
 }
-<abp-dynamic-form abp-model="Project" asp-page="/Projects/CreateModal">
+
+<abp-dynamic-form abp-model="AssignUserViewModel" asp-page="/ProjectBoard/AssignUserToProjectModal">
     <abp-modal>
-        <abp-modal-header style="background-image: url('img/modalHeader.jpg');" title="@L["NewProject"].Value"></abp-modal-header>
+        <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["AssignUserToProject"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-form-content/>
         </abp-modal-body>

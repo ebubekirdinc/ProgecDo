@@ -1,0 +1,76 @@
+﻿@page
+@using Microsoft.Extensions.Localization
+@using ProgecDo.Localization
+@model ProgecDo.Web.Pages.BoardMessages.Index
+@inject IStringLocalizer<ProgecDoResource> L
+
+@section styles
+{
+    <abp-style src="/Pages/BoardMessages/BoardMessage.css"/>
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/BoardMessages/BoardMessage.js"/>
+}
+
+<div class="row">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a asp-page="/ProjectBoard/Index" asp-route-projectId="@Model.BoardMessage.Id">@Model.BoardMessage.ProjectTitle</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="card">
+
+            <div class="card-body">
+                <div style=" display:flex;" class="justify-content-between">
+
+                    <abp-button id="NewBoardMessageButton"
+                                class="border-0"
+                                icon="plus"
+                                data-id="@Model.BoardMessage.Id"
+                                button-type="Outline_Success"
+                                data-toggle="tooltip" data-placement="right" title="@L["NewBoardMessage"].Value"/>
+
+                    <h3 class="card-title">@L["Messages"].Value</h3>
+                    <div></div>
+                </div>
+
+                <hr>
+
+                @foreach (var message in Model.BoardMessage.BoardMessageList)
+                {
+                    <div class="row boardMessage" data-id="@message.Id">
+                        <div class="col-md-1">
+                            <div class="namesContainer">
+                                <div class="namesText">
+                                    @message.UserName[0].ToString().ToUpper()@message.UserSurname?[0].ToString().ToUpper()
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-11">
+                            <div>
+                                <b> @message.Title</b>
+                            </div>
+                            <div style="padding-bottom: 10px;">
+                                <span class="card-subtitle text-muted">@message.UserName @message.UserSurname - @message.CreationTime - @Html.Raw(message.Content.Length < 50 ? message.Content : message.Content.Left(50)) </span>
+                                @if (message.CommentCount > 0)
+                                {
+                                    <div class="float-right">
+                                        <span class="badge badge-pill badge-primary" style="font-size: medium">@message.CommentCount</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+            </div>
+        </div>
+    </div>
+</div>

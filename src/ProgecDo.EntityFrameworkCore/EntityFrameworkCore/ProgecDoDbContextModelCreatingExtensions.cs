@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProgecDo.BoardMessages;
 using ProgecDo.Projects;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -49,6 +50,34 @@ namespace ProgecDo.EntityFrameworkCore
                 }
  
                 b.ConfigureByConvention(); //auto configure for the base class props
+            });
+            
+            builder.Entity<BoardMessage>(b =>
+            {
+                b.ToTable(ProgecDoConsts.DbTablePrefix + "BoardMessages", ProgecDoConsts.DbSchema);
+
+                b.Property(x => x.Title).IsRequired().HasMaxLength(BoardMessageConsts.MaxTitleLength);
+                b.Property(x => x.Content).IsRequired().HasMaxLength(BoardMessageConsts.MaxContentLength);
+                // b.Property(x => x.ParentId).IsRequired();
+                b.Property(x => x.ProjectId).IsRequired();
+                b.HasMany(x => x.Comments)
+                    .WithOne(x => x.BoardMessage)
+                    .HasForeignKey(x => x.ParentId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.ConfigureByConvention();
+            });
+
+            builder.Entity<Comment>(b =>
+            {
+                b.ToTable(ProgecDoConsts.DbTablePrefix + "BoardMessageComments", ProgecDoConsts.DbSchema);
+
+                b.Property(x => x.Content).IsRequired().HasMaxLength(BoardMessageConsts.MaxContentLength);
+                // b.Property(x => x.ParentId).IsRequired();
+                b.Property(x => x.ParentId).IsRequired();
+
+                b.ConfigureByConvention();
             });
         }
     }

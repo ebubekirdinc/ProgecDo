@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ProgecDo.BoardMessages;
+using ProgecDo.ProjectBoard;
 using ProgecDo.Projects;
 using ProgecDo.Users;
 
@@ -16,6 +18,17 @@ namespace ProgecDo
             CreateMap<ProjectUser, ProjectUserDto>();
             CreateMap<AppUser, AppUserDto>();
             CreateMap<CreateUpdateProjectDto, Project>();
+
+            CreateMap<AppUser, UserLookupDto>();
+
+            CreateMap<CreateUpdateBoardMessageDto, BoardMessage>();
+            // CreateMap<BoardMessage , BoardMessageDto>();
+            CreateMap<Comment, CommentDto>();
+            CreateMap<Comment, EditBoardMessageCommentDto>();
+            CreateMap<BoardMessage, BoardMessageDto>();
+
+            // CreateMap<CreateUpdateTodoDto, Todo>();
+            // CreateMap<Todo, TodoDto>();
         }
     }
 }

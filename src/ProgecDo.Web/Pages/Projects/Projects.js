@@ -31,7 +31,7 @@
     });
 
     function reloadProjects() {
-        $.get("/Projects?handler=ProjectsViewComponent", function (data) {
+        $.get("/Index?handler=ProjectsViewComponent", function (data) {
             container.html(data);
         });
     } 
