@@ -25,19 +25,12 @@ namespace ProgecDo.Pages.Projects
 
     public class ProjectsTests : ProgecDoWebTestBase
     {
-        private readonly IProjectAppService _projectAppService;
-
-        private readonly IJsonSerializer _jsonSerializer;
-        // private readonly IMapper _mapper;
-        // private readonly IObjectMapper _mapper;
-        // private readonly SignInManager<AppUser> _signInManager;
-        // private readonly IUserStore<AppUser> _userStore;
+        private readonly IProjectAppService _projectAppService; 
 
 
         public ProjectsTests()
         {
             _projectAppService = GetRequiredService<IProjectAppService>();
-            _jsonSerializer = GetRequiredService<IJsonSerializer>(); 
         }
 
         [Fact]
