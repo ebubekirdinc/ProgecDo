@@ -31,7 +31,7 @@ namespace ProgecDo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BoardMessageComments",
+                name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -47,9 +47,9 @@ namespace ProgecDo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BoardMessageComments", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BoardMessageComments_BoardMessages_ParentId",
+                        name: "FK_Comments_BoardMessages_ParentId",
                         column: x => x.ParentId,
                         principalTable: "BoardMessages",
                         principalColumn: "Id",
@@ -57,15 +57,15 @@ namespace ProgecDo.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BoardMessageComments_ParentId",
-                table: "BoardMessageComments",
+                name: "IX_Comments_ParentId",
+                table: "Comments",
                 column: "ParentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BoardMessageComments");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "BoardMessages");

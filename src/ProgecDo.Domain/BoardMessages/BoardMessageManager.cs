@@ -35,7 +35,7 @@ namespace ProgecDo.BoardMessages
         //
         //     var boardMessage = await _boardMessageRepository.GetAsync(x => x.Id == boardMessageComment.BoardMessageId);
         //
-        //     var comment = boardMessage.BoardMessageComments.FirstOrDefault(x => x.Id == boardMessageComment.Id);
+        //     var comment = boardMessage.Comments.FirstOrDefault(x => x.Id == boardMessageComment.Id);
         //     comment.SetContent(comment.Content);
         // }
     }

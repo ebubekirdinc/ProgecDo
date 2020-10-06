@@ -59,7 +59,7 @@ namespace ProgecDo.BoardMessages
 
             return new BoardMessageListDto
             {
-                Id = projectId,
+                ProjectId = projectId,
                 ProjectTitle = project.Title,
                 ProjectDescription = project.Description,
                 BoardMessageList = queryResult.OrderByDescending(x => x.CreationTime).ToList()
@@ -119,8 +119,8 @@ namespace ProgecDo.BoardMessages
 
         public EditBoardMessageCommentDto GetBoardMessageCommentByCommentId(Guid commentId, Guid parentId)
         {
-            // var safdgs = Repository.WithDetails(x=>x.BoardMessageComments).FirstOrDefault(x => x.Id == boardMessageId);
-            // var com=safdgs.BoardMessageComments.FirstOrDefault(x => x.Id == commentId);
+            // var safdgs = Repository.WithDetails(x=>x.Comments).FirstOrDefault(x => x.Id == boardMessageId);
+            // var com=safdgs.Comments.FirstOrDefault(x => x.Id == commentId);
 
             var comment = Repository
                 .WithDetails(x => x.Comments)
@@ -149,7 +149,7 @@ namespace ProgecDo.BoardMessages
             var boardMessage = Repository
                 .WithDetails(x => x.Comments)
                 .FirstOrDefault(x => x.Id == parentId);
-            // .BoardMessageComments
+            // .Comments
             // .FirstOrDefault(x => x.Id == commentId);
 
             boardMessage?.DeleteComment(commentId);

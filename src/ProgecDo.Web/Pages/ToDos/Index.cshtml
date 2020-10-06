@@ -1,0 +1,33 @@
+@page
+@using Microsoft.Extensions.Localization
+@using ProgecDo.Localization
+@model ProgecDo.Web.Pages.ToDos.Index
+@inject IStringLocalizer<ProgecDoResource> L
+
+
+<div class="row">
+    <div class="col-10 mx-auto">
+        <div class="card">
+
+            <div class="card-body">
+                <div style=" float:left;">
+
+                    <abp-button id="NewBoardMessageButton"
+                                class="border-0"
+                                icon="plus"
+                                data-id="@Model.ToDos.ProjectId"
+                                button-type="Success"
+                                text="@L["NewBoardMessage"].Value"/>
+
+                </div>
+
+                <div style="  left:50%" class="text-center">
+
+                    <h3 class="card-title">@L["Messages"].Value</h3>
+                </div>
+
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

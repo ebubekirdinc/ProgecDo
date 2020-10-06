@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProgecDo.BoardMessages;
 using ProgecDo.Projects;
+using ProgecDo.ToDos;
 using ProgecDo.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -32,6 +33,8 @@ namespace ProgecDo.EntityFrameworkCore
         public DbSet<ProjectUser> ProjectUsers { get; set; }
         public DbSet<BoardMessage> BoardMessages { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<ToDoItem> ToDoItems { get; set; }
 
         public ProgecDoDbContext(DbContextOptions<ProgecDoDbContext> options)
             : base(options)

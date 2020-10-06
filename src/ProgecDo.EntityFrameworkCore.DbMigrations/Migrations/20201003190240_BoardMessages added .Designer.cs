@@ -135,7 +135,7 @@ namespace ProgecDo.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("BoardMessageComments");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("ProgecDo.Projects.Project", b =>

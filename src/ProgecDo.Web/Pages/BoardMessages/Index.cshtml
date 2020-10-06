@@ -20,26 +20,35 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a asp-page="/ProjectBoard/Index" asp-route-projectId="@Model.BoardMessage.Id">@Model.BoardMessage.ProjectTitle</a>
+                        <a asp-page="/ProjectBoard/Index" asp-route-projectId="@Model.BoardMessage.ProjectId">@Model.BoardMessage.ProjectTitle</a>
                     </li>
                 </ol>
             </nav>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10 mx-auto">
         <div class="card">
 
             <div class="card-body">
-                <div style=" display:flex;" class="justify-content-between">
+                <div style=" float:left;" >
 
                     <abp-button id="NewBoardMessageButton"
                                 class="border-0"
                                 icon="plus"
-                                data-id="@Model.BoardMessage.Id"
-                                button-type="Outline_Success"
-                                data-toggle="tooltip" data-placement="right" title="@L["NewBoardMessage"].Value"/>
+                                data-id="@Model.BoardMessage.ProjectId"
+                                button-type="Success"
+                                text="@L["NewBoardMessage"].Value"/>
 
-                    <h3 class="card-title">@L["Messages"].Value</h3>
-                    <div></div>
                 </div>
+                
+                <div style="  left:50%"  class="text-center">
+                    
+                    <h3 class="card-title">@L["Messages"].Value</h3>
+                </div>
+                
 
                 <hr>
 

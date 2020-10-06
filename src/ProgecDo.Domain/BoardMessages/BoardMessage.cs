@@ -11,9 +11,7 @@ namespace ProgecDo.BoardMessages
     {
         public virtual string Title { get; private set; }
         public virtual string Content { get; private set; }
-        public virtual Guid ProjectId { get; set; }
-
-        // public virtual Guid ParentId { get; set; }
+        public virtual Guid ProjectId { get; set; } 
 
         public virtual List<Comment> Comments { get; protected set; }
 

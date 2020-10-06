@@ -26,7 +26,7 @@ namespace ProgecDo.BoardMessages
 
         public void SetContent([NotNull] string content)
         {
-            Content = Check.NotNullOrWhiteSpace(content, nameof(content), maxLength: BoardMessageConsts.MaxContentLength, BoardMessageConsts.MinContentLength); 
+            Content = Check.NotNullOrWhiteSpace(content, nameof(Content), maxLength: BoardMessageConsts.MaxContentLength, BoardMessageConsts.MinContentLength); 
         }
     }
 }

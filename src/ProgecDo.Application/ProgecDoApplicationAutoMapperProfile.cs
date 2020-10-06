@@ -2,6 +2,7 @@
 using ProgecDo.BoardMessages;
 using ProgecDo.ProjectBoard;
 using ProgecDo.Projects;
+using ProgecDo.ToDos;
 using ProgecDo.Users;
 
 namespace ProgecDo
@@ -27,8 +28,8 @@ namespace ProgecDo
             CreateMap<Comment, EditBoardMessageCommentDto>();
             CreateMap<BoardMessage, BoardMessageDto>();
 
+            CreateMap<ToDo, ToDoDto>();
             // CreateMap<CreateUpdateTodoDto, Todo>();
-            // CreateMap<Todo, TodoDto>();
         }
     }
 }

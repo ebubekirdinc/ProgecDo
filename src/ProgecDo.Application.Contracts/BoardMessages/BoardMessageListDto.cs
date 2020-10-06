@@ -11,6 +11,7 @@ namespace ProgecDo.BoardMessages
         //
         // public string UserName { get; set; }
         // public string UserSurname { get; set; } 
+        public Guid ProjectId { get; set; }
         public string ProjectTitle { get; set; }
         public string ProjectDescription { get; set; }
         public List<BoardMessageWithUserDto> BoardMessageList { get; set; }
