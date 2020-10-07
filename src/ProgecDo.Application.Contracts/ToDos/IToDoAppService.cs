@@ -10,7 +10,7 @@ namespace ProgecDo.ToDos
         Task<ToDoListDto> GetToDoListByProjectId(Guid projectId);
         Task<ToDoDto> GetToDoListWithToDoItemsByToDoListId(Guid toDoListId);
         Task<bool> AddToDoItem(CreateUpdateToDoItemDto input);
-        Task<ToDoItemDto> GetToDoItemById(Guid toDoItemId);
+        Task<ShowToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId);
     }
 
 }

@@ -1,15 +1,37 @@
 @page
 @using Microsoft.Extensions.Localization
-@using ProgecDo.Localization 
+@using ProgecDo.Localization
 @model ProgecDo.Web.Pages.ToDos.ShowToDoItem
 @inject IStringLocalizer<ProgecDoResource> L
- 
-<abp-dynamic-form abp-model="ToDoItem" asp-page="/ToDos/CreateToDoItemModal">
-    @* <abp-modal> *@
-    @*     <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["AddToDoItem"].Value"></abp-modal-header> *@
-    @*     <abp-modal-body> *@
-            <abp-form-content/>
-    @*     </abp-modal-body> *@
-    @*     <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer> *@
-    @* </abp-modal> *@
-</abp-dynamic-form>
+
+<div class="row">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a asp-page="/ProjectBoard/Index" asp-route-projectId="@Model.ToDoItem.ProjectId">@Model.ToDoItem.ProjectTitle</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10 mx-auto">
+        <div class="card">
+
+            <div class="card-body">
+                <abp-dynamic-form abp-model="ToDoItem" asp-page="/ToDos/CreateToDoItemModal">
+                    @* <abp-modal> *@
+                    @*     <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["AddToDoItem"].Value"></abp-modal-header> *@
+                    @*     <abp-modal-body> *@
+                    <abp-form-content/>
+                    @*     </abp-modal-body> *@
+                    @*     <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer> *@
+                    @* </abp-modal> *@
+                </abp-dynamic-form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -39,7 +39,7 @@
                 @foreach (var item in Model.ToDoList.ToDoItems)
                 {
                     <p>
-                        <a asp-page="/ToDos/ShowToDoItem" asp-route-toDoListId="@item.Id">@item.Description</a>
+                        <a asp-page="/ToDos/ShowToDoItem" asp-route-toDoListId="@item.ParentId"  asp-route-toDoItemId="@item.Id">@item.Description</a>
                     </p>
                 }
 

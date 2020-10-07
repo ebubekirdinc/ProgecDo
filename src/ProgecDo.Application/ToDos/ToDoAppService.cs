@@ -106,33 +106,32 @@ namespace ProgecDo.ToDos
                 };
 
 
-            return  toDoDtoList.FirstOrDefault();
+            return toDoDtoList.FirstOrDefault();
         }
-        
+
         public async Task<bool> AddToDoItem(CreateUpdateToDoItemDto input)
         {
             var toDo = Repository.WithDetails(x => x.ToDoItems).FirstOrDefault(x => x.Id == input.ParentId);
-            toDo?.AddToDoItem(input.Description,input.DueDate);
+            toDo?.AddToDoItem(input.Description, input.DueDate);
 
             await Repository.UpdateAsync(toDo);
 
             return true;
         }
-        
-        public async Task<ToDoItemDto> GetToDoItemById(Guid toDoItemId)
+
+        public async Task<ShowToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId)
         {
+            var toDoList = await Repository.GetAsync(toDoListId);
             var toDoItem = await _toDoItemRepository.GetAsync(toDoItemId);
-      
-            return ObjectMapper.Map<ToDoItem, ToDoItemDto>(toDoItem);
+            var project = await _projectRepository.GetAsync(x => x.Id == toDoList.ProjectId);
+
+            var toDoItemDto = ObjectMapper.Map<ToDoItem, ShowToDoItemDto>(toDoItem);
+
+            toDoItemDto.ProjectId = project.Id;
+            toDoItemDto.ProjectTitle = project.Title;
+            toDoItemDto.ProjectDescription = project.Description;
+            
+            return toDoItemDto;
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 }

@@ -20,9 +20,9 @@ namespace ProgecDo.Web.Pages.ToDos
             _toDoAppService = toDoAppService;
         }
 
-        public async Task OnGet(Guid toDoListId)
+        public async Task OnGet(Guid toDoListId, Guid toDoItemId)
         {
-            ToDoItem = ObjectMapper.Map<ToDoItemDto, ToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId));
+            ToDoItem = ObjectMapper.Map<ShowToDoItemDto, ToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId, toDoItemId));
         }
         
         public class ToDoItemViewModel
@@ -46,6 +46,14 @@ namespace ProgecDo.Web.Pages.ToDos
 
             [HiddenInput] 
             public Guid ParentId { get; set; }
+            
+            [HiddenInput] 
+            public Guid ProjectId { get; set; }
+            [HiddenInput] 
+            public string ProjectTitle { get; set; }
+            
+            [HiddenInput] 
+            public string ProjectDescription { get; set; }
         }
     }
 }
