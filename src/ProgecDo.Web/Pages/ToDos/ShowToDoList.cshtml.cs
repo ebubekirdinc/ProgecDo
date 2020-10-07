@@ -17,6 +17,7 @@ namespace ProgecDo.Web.Pages.ToDos
 
         public async Task OnGet(Guid toDoListId)
         {
+            var sadf = await _toDoAppService.GetToDoListWithToDoItemsByToDoListId(toDoListId);
             ToDoList = ObjectMapper.Map<ToDoDto, ShowToDoListViewModel>(await _toDoAppService.GetToDoListWithToDoItemsByToDoListId(toDoListId));
         }
 
@@ -32,7 +33,7 @@ namespace ProgecDo.Web.Pages.ToDos
             
             public DateTime CreationTime { get; set; }
 
-            public List<ToDoItemViewModel> ToDoItemList { get; set; }
+            public List<ToDoItemViewModel> ToDoItems { get; set; }
 
             public Guid ProjectId { get; set; }
             public string ProjectTitle { get; set; }
@@ -45,9 +46,9 @@ namespace ProgecDo.Web.Pages.ToDos
         {
             public Guid Id { get; set; }
 
-            public virtual Guid ParentId { get; set; }
-            public virtual string Description { get; set; }
-            public virtual DateTime? DueDate { get; set; }
+            public Guid ParentId { get; set; }
+            public string Description { get; set; }
+            public DateTime? DueDate { get; set; }
 
             // public string UserName { get; set; }
             // public string Name { get; set; }

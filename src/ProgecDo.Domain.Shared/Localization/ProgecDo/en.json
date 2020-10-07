@@ -51,6 +51,9 @@
     "EditToDoList": "Edit to-do list",
     "NameOfToDoList": "Name this to-do list",
     "DescriptionOfToDoList": "Add extra details or description",
+    "DescriptionOfToDoItem": "Add extra details or description",
+    "DueOn": "Due On", 
+    "AddToDoItem": "Add a to-do",
 
     "Documents": "Documents",
 

@@ -108,5 +108,26 @@ namespace ProgecDo.ToDos
 
             return  toDoDtoList.FirstOrDefault();
         }
+        
+        public async Task<bool> AddToDoItem(CreateUpdateToDoItemDto input)
+        {
+            var toDo = Repository.WithDetails(x => x.ToDoItems).FirstOrDefault(x => x.Id == input.ParentId);
+            toDo?.AddToDoItem(input.Description,input.DueDate);
+
+            await Repository.UpdateAsync(toDo);
+
+            return true;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }

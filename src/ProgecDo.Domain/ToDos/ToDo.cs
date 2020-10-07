@@ -32,7 +32,7 @@ namespace ProgecDo.ToDos
         
         public void AddToDoItem(string description, DateTime? dueDate)
         {
-            Check.NotNullOrWhiteSpace(description, nameof(Description), ToDoConsts.MaxToDoItemDescriptionLength, ToDoConsts.MinToDoItemDescriptionLength);
+            Check.NotNullOrWhiteSpace(description, nameof(Description), ToDoConsts.MaxToDoItemDescriptionLength );
 
             ToDoItems.Add(new ToDoItem(Id, description, dueDate));
         }
@@ -59,13 +59,13 @@ namespace ProgecDo.ToDos
         internal ToDoItem(Guid parentId, string description, DateTime? dueDate)
         {
             ParentId = parentId;
-            Description = Check.NotNullOrWhiteSpace(description, nameof(Description), ToDoConsts.MaxToDoItemDescriptionLength, ToDoConsts.MinToDoItemDescriptionLength);
+            Description = Check.NotNullOrWhiteSpace(description, nameof(Description), ToDoConsts.MaxToDoItemDescriptionLength );
             DueDate = dueDate;
         }
 
         public void SetDescription([NotNull] string description)
         {
-            Description = Check.NotNullOrWhiteSpace(description, nameof(Description), maxLength: ToDoConsts.MaxToDoItemDescriptionLength, ToDoConsts.MinToDoItemDescriptionLength); 
+            Description = Check.NotNullOrWhiteSpace(description, nameof(Description), maxLength: ToDoConsts.MaxToDoItemDescriptionLength ); 
         }
     }
 }

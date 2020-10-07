@@ -45,6 +45,8 @@ namespace ProgecDo.Web
             CreateMap<ToDoItemDto, ShowToDoList.ToDoItemViewModel>();
             CreateMap<ToDoDto, EditToDoListModal.EditToDoListViewModel>();
             CreateMap<EditToDoListModal.EditToDoListViewModel, CreateUpdateToDoDto>();
+            
+            CreateMap<CreateToDoItemModal.NewToDoItemViewModel, CreateUpdateToDoItemDto>();
         }
     }
 }

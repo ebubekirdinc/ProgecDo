@@ -29,6 +29,18 @@
 
             <div class="card-body">
                 <a href="#" data-id="@Model.ToDoList.Id" id="EditToDoListButton">@Model.ToDoList.Name</a>
+                <abp-button id="NewToDoItemButton"
+                            class="border-0"
+                            icon="plus"
+                            data-id="@Model.ToDoList.Id"
+                            button-type="Outline_Success"
+                            text="@L["AddToDoItem"].Value"/>
+                
+                @foreach (var item in Model.ToDoList.ToDoItems)
+                {
+                    <p>@item.Description</p>
+                }
+                
             </div>
         </div>
     </div>
