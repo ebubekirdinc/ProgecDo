@@ -35,12 +35,14 @@
                             data-id="@Model.ToDoList.Id"
                             button-type="Outline_Success"
                             text="@L["AddToDoItem"].Value"/>
-                
+
                 @foreach (var item in Model.ToDoList.ToDoItems)
                 {
-                    <p>@item.Description</p>
+                    <p>
+                        <a asp-page="/ToDos/ShowToDoItem" asp-route-toDoListId="@item.Id">@item.Description</a>
+                    </p>
                 }
-                
+
             </div>
         </div>
     </div>

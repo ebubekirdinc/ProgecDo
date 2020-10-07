@@ -121,7 +121,7 @@ namespace ProgecDo.BoardMessages
         {
             // var safdgs = Repository.WithDetails(x=>x.Comments).FirstOrDefault(x => x.Id == boardMessageId);
             // var com=safdgs.Comments.FirstOrDefault(x => x.Id == commentId);
-
+            
             var comment = Repository
                 .WithDetails(x => x.Comments)
                 .FirstOrDefault(x => x.Id == parentId)?

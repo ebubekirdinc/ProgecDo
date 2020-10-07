@@ -119,7 +119,12 @@ namespace ProgecDo.ToDos
             return true;
         }
         
-        
+        public async Task<ToDoItemDto> GetToDoItemById(Guid toDoItemId)
+        {
+            var toDoItem = await _toDoItemRepository.GetAsync(toDoItemId);
+      
+            return ObjectMapper.Map<ToDoItem, ToDoItemDto>(toDoItem);
+        }
         
         
         

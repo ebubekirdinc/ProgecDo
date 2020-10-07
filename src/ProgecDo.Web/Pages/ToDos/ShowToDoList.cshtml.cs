@@ -16,8 +16,7 @@ namespace ProgecDo.Web.Pages.ToDos
         }
 
         public async Task OnGet(Guid toDoListId)
-        {
-            var sadf = await _toDoAppService.GetToDoListWithToDoItemsByToDoListId(toDoListId);
+        { 
             ToDoList = ObjectMapper.Map<ToDoDto, ShowToDoListViewModel>(await _toDoAppService.GetToDoListWithToDoItemsByToDoListId(toDoListId));
         }
 
