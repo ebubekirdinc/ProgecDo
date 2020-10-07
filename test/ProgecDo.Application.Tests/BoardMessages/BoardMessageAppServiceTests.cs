@@ -80,7 +80,7 @@ namespace ProgecDo.BoardMessages
             var boardMessages = await _boardMessageAppService.GetListAsync(new PagedAndSortedResultRequestDto());
 
             // Act
-            var result = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var result = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Assert 
             result.ShouldNotBeNull();
@@ -136,7 +136,7 @@ namespace ProgecDo.BoardMessages
         {
             // Arrange
             var boardMessages = await _boardMessageAppService.GetListAsync(new PagedAndSortedResultRequestDto());
-            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Act
             var result = _boardMessageAppService
@@ -152,7 +152,7 @@ namespace ProgecDo.BoardMessages
         {
             // Arrange
             var boardMessages = await _boardMessageAppService.GetListAsync(new PagedAndSortedResultRequestDto());
-            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Act
             var result = _boardMessageAppService.UpdateBoardMessageCommentAsync(
@@ -176,7 +176,7 @@ namespace ProgecDo.BoardMessages
         {
             // Arrange
             var boardMessages = await _boardMessageAppService.GetListAsync(new PagedAndSortedResultRequestDto());
-            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Act
             var exception = await Assert.ThrowsAsync<AbpValidationException>(async () =>
@@ -198,14 +198,14 @@ namespace ProgecDo.BoardMessages
         {
             // Arrange
             var boardMessages = await _boardMessageAppService.GetListAsync(new PagedAndSortedResultRequestDto());
-            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Act
             var result = _boardMessageAppService.DeleteBoardmessageComment(
                 boardMessageDto.Comments.FirstOrDefault().Id,
                 boardMessages.Items.FirstOrDefault().Id
             );
-            var boardMessageDtoAfterDeletion = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var boardMessageDtoAfterDeletion = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Assert 
             result.ShouldBe(true);

@@ -47,6 +47,10 @@
     "BoardMessageCommentDeletionConfirmationMessage": "Are you sure to delete your comment '{0}'?",
 
     "Todos": "To-dos",
+    "NewToDoList": "New to-do list",
+    "EditToDoList": "Edit to-do list",
+    "NameOfToDoList": "Name this to-do list",
+    "DescriptionOfToDoList": "Add extra details or description",
 
     "Documents": "Documents",
 

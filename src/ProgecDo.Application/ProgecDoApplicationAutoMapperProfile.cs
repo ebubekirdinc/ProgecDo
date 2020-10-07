@@ -29,7 +29,7 @@ namespace ProgecDo
             CreateMap<BoardMessage, BoardMessageDto>();
 
             CreateMap<ToDo, ToDoDto>();
-            // CreateMap<CreateUpdateTodoDto, Todo>();
+            CreateMap<CreateUpdateToDoDto, ToDo>();
         }
     }
 }

@@ -66,9 +66,9 @@ namespace ProgecDo.BoardMessages
             };
         }
 
-        public async Task<BoardMessageDto> GetBoardMessageWithCommentsByParentId(Guid parentId)
+        public async Task<BoardMessageDto> GetBoardMessageWithCommentsByBoardMessageId(Guid boardMessageId)
         {
-            var comments = _boardMessageCommentRepository.Where(x => x.ParentId == parentId);
+            var comments = _boardMessageCommentRepository.Where(x => x.ParentId == boardMessageId);
 
             var query = from comment in comments.ToList()
                 join user in _userRepository on comment.CreatorId equals user.Id
@@ -84,12 +84,12 @@ namespace ProgecDo.BoardMessages
                 };
 
 
-            var boardMessage = from message in Repository.Where(x => x.Id == parentId)
+            var boardMessage = from message in Repository.Where(x => x.Id == boardMessageId)
                 join user in _userRepository on message.CreatorId equals user.Id
                 join project in _projectRepository on message.ProjectId equals project.Id
                 select new BoardMessageDto
                 {
-                    Id = parentId,
+                    Id = boardMessageId,
                     Title = message.Title,
                     Content = message.Content,
                     ProjectId = project.Id,

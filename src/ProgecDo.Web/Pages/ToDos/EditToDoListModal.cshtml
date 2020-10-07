@@ -1,0 +1,21 @@
+@page
+@using Microsoft.Extensions.Localization
+@using ProgecDo.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model ProgecDo.Web.Pages.ToDos.EditToDoListModal
+@inject IStringLocalizer<ProgecDoResource> L
+
+@{
+    Layout = null;
+}
+
+ 
+<abp-dynamic-form abp-model="EditToDoList" asp-page="/ToDos/EditToDoListModal">
+    <abp-modal>
+        <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["EditToDoList"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-form-content/>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</abp-dynamic-form>

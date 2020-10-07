@@ -9,6 +9,8 @@ namespace ProgecDo.ToDos
         public string Name { get; set; }
         public string Description { get; set; }
         public Guid ProjectId { get; set; }
+        public string ProjectTitle { get; set; }
+        public string ProjectDescription { get; set; }
         public List<ToDoItemDto> ToDoItems { get; set; }
     }
 

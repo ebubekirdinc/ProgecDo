@@ -2,7 +2,7 @@
 
 $(function () {
     let l = abp.localization.getResource('ProgecDo');
- 
+
     assignUserToProjectModal.onResult(function () {
         abp.notify.info(
             l('UserSuccessfullyAddedToProject')
@@ -12,7 +12,13 @@ $(function () {
     document.getElementById('messagesCard')
         .addEventListener('click', function (event) {
             let id = this.getAttribute("data-id");
-            window.location.href="/BoardMessages/Index?projectId=" + id;
+            window.location.href = "/BoardMessages/Index?projectId=" + id;
+        });
+    
+    document.getElementById('toDosCard')
+        .addEventListener('click', function (event) {
+            let id = this.getAttribute("data-id");
+            window.location.href = "/ToDos/Index?projectId=" + id;
         });
 });
 

@@ -31,7 +31,7 @@ namespace ProgecDo.ProjectBoard
                 .Where(x => x.Id == id)
                 .Select(x => new ProjectBoardDto()
                 {
-                    Id = x.Id,
+                    ProjectId = x.Id,
                     Title = x.Title,
                     Description = x.Description
                 });

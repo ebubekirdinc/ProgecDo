@@ -53,7 +53,7 @@ $(function () {
         messages[i].addEventListener('click',
             function (event) {
                 let id = this.getAttribute("data-id");
-                window.location.href = "/BoardMessages/ShowBoardMessage?parentId=" + id;
+                window.location.href = "/BoardMessages/ShowBoardMessage?boardMessageId=" + id;
             },
             false);
     }
@@ -73,8 +73,8 @@ $(function () {
 });
 
 // ShowBoardMessage
-function editBoardMessageDropdown(parentId) {
-    editBoardMessageModal.open({parentId: parentId});
+function editBoardMessageDropdown(boardMessageId) {
+    editBoardMessageModal.open({boardMessageId: boardMessageId});
 }
 
 function deleteBoardMessageDropdown(parentId,projectId) {

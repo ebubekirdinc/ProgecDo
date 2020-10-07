@@ -81,7 +81,7 @@ namespace ProgecDo.Pages.BoardMessages
         {
             // Arrange
             var boardMessages = await _boardMessageAppService.GetListAsync(new PagedAndSortedResultRequestDto());
-            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(boardMessages.Items.FirstOrDefault().Id);
+            var boardMessageDto = await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessages.Items.FirstOrDefault().Id);
 
             // Act 
             var response = await Client.GetAsync("/BoardMessages/EditCommentModal?commentId=" + boardMessageDto.Comments.FirstOrDefault().Id + "&parentId=" + boardMessages.Items.FirstOrDefault()?.Id);

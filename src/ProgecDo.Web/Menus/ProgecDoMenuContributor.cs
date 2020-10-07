@@ -28,7 +28,11 @@ namespace ProgecDo.Web.Menus
 
             var l = context.GetLocalizer<ProgecDoResource>();
 
-            context.Menu.Items.Insert(0, new ApplicationMenuItem(ProgecDoMenus.Home, l["Menu:Home"], "~/"));
+            context.Menu.Items.Insert(0, new ApplicationMenuItem(
+                ProgecDoMenus.Home,
+                l["Menu:Home"],
+                "~/",
+                "fa fa-home"));
         }
     }
 }

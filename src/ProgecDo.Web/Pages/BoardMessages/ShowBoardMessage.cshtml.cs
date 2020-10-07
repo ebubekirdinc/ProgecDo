@@ -20,13 +20,13 @@ namespace ProgecDo.Web.Pages.BoardMessages
             _boardMessageAppService = boardMessageAppService;
         }
 
-        public async Task OnGetAsync(Guid parentId)
+        public async Task OnGetAsync(Guid boardMessageId)
         {
             NewBoardMessageComment = new NewBoardMessageCommentViewModel
             {
-                ParentId = parentId
+                ParentId = boardMessageId
             };
-            BoardMessage = ObjectMapper.Map<BoardMessageDto, ShowBoardMessageViewModel>(await _boardMessageAppService.GetBoardMessageWithCommentsByParentId(parentId));
+            BoardMessage = ObjectMapper.Map<BoardMessageDto, ShowBoardMessageViewModel>(await _boardMessageAppService.GetBoardMessageWithCommentsByBoardMessageId(boardMessageId));
         }
 
         public async Task<IActionResult> OnPostAsync()

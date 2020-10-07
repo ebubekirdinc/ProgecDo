@@ -18,18 +18,18 @@ namespace ProgecDo.Web.Pages.BoardMessages
             _boardMessageAppService = boardMessageAppService;
         }
 
-        public async Task OnGetAsync(Guid parentId)
+        public async Task OnGetAsync(Guid boardMessageId)
         {
-            var boardMessageDto = await _boardMessageAppService.GetAsync(parentId);
+            var boardMessageDto = await _boardMessageAppService.GetAsync(boardMessageId);
 
             BoardMessage = ObjectMapper.Map<BoardMessageDto, EditBoardMessageViewModel>(boardMessageDto);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var asdf = ObjectMapper.Map<EditBoardMessageViewModel, CreateUpdateBoardMessageDto>(BoardMessage);
+            var createUpdateBoardMessageDto = ObjectMapper.Map<EditBoardMessageViewModel, CreateUpdateBoardMessageDto>(BoardMessage);
             
-            await _boardMessageAppService.UpdateAsync(BoardMessage.Id, asdf);
+            await _boardMessageAppService.UpdateAsync(BoardMessage.Id, createUpdateBoardMessageDto);
 
             return NoContent();
         }

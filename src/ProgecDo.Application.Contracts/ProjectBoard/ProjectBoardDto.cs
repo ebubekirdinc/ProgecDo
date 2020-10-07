@@ -8,7 +8,7 @@ namespace ProgecDo.ProjectBoard
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        
+        public Guid ProjectId { get; set; }
         public BoardMessageListDto BoardMessageDto { get; set; }
     }
 }
