@@ -12,7 +12,7 @@ namespace ProgecDo.ToDos
         Task<bool> AddToDoItem(CreateUpdateToDoItemDto input);
         Task<ShowToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId);
         Task<bool> UpdateToDoItemAsync(CreateUpdateToDoItemDto input);
-
+        bool DeleteToDoItem(Guid toDoItemId, Guid toDoListId);
     }
 
 }

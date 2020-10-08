@@ -144,7 +144,16 @@ namespace ProgecDo.ToDos
             return true;
         }
         
-      
+        public bool DeleteToDoItem(Guid toDoItemId, Guid toDoListId)
+        {
+            var toDo = Repository
+                .WithDetails(x => x.ToDoItems)
+                .FirstOrDefault(x => x.Id == toDoListId); 
+
+            toDo?.DeleteToDoItem(toDoItemId);
+            
+            return true;
+        }
         
         
         
