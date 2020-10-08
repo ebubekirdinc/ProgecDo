@@ -4,6 +4,11 @@
 @model ProgecDo.Web.Pages.ToDos.ShowToDoItem
 @inject IStringLocalizer<ProgecDoResource> L
 
+@section scripts
+{
+    <abp-script src="/Pages/ToDos/ToDo.js"/>
+}
+
 <div class="row">
     <div class="col">
         <div class="d-flex justify-content-center">
@@ -22,6 +27,25 @@
         <div class="card">
 
             <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        @* <h3>  </h3> *@
+                    </div>
+                    <div class="btn-group dropleft float-right my-dropdown-dropleft">
+                        <button type="button" class="btn btn-outline-primary border-0 my-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button> 
+                            <div class="dropdown-menu bg-primary ">
+                                <a class="dropdown-item my-dropdown-item" href="#" onclick="editToDoItemDropdown('@Model.ToDoItem.ParentId','@Model.ToDoItem.Id')">
+                                    <i class="fa fa-pencil"></i><span>&nbsp @L["Edit"].Value</span>
+                                </a>
+                                <a class="dropdown-item my-dropdown-item" href="#" onclick="deleteToDoItemDropdown('@Model.ToDoItem.Id','@Model.ToDoItem.ParentId')">
+                                    <i class="fa fa-trash"></i><span>&nbsp&nbsp @L["Delete"].Value</span>
+                                </a>
+                            </div> 
+                    </div>
+                </div>
+                <hr>
                 <abp-dynamic-form abp-model="ToDoItem" asp-page="/ToDos/CreateToDoItemModal">
                     @* <abp-modal> *@
                     @*     <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["AddToDoItem"].Value"></abp-modal-header> *@

@@ -54,6 +54,8 @@
     "DescriptionOfToDoItem": "Add extra details or description",
     "DueOn": "Due On", 
     "AddToDoItem": "Add a to-do",
+    "EditToDoItem": "Edit to-do",
+    "ToDoItemDeletionConfirmationMessage": "Are you sure to delete this to-do item?",
 
     "Documents": "Documents",
 

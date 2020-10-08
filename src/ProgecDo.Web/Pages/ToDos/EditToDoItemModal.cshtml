@@ -2,16 +2,16 @@
 @using Microsoft.Extensions.Localization
 @using ProgecDo.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
-@model ProgecDo.Web.Pages.ToDos.CreateToDoItemModal
+@model ProgecDo.Web.Pages.ToDos.EditToDoItemModal
 @inject IStringLocalizer<ProgecDoResource> L
 
 @{
     Layout = null;
 }
 
-<abp-dynamic-form abp-model="CreateUpdateToDoItem" asp-page="/ToDos/CreateToDoItemModal">
+<abp-dynamic-form abp-model="CreateUpdateToDoItem" asp-page="/ToDos/EditToDoItemModal">
     <abp-modal>
-        <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["AddToDoItem"].Value"></abp-modal-header>
+        <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["EditToDoItem"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-form-content/>
         </abp-modal-body>

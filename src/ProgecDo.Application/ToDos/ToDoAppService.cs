@@ -130,8 +130,31 @@ namespace ProgecDo.ToDos
             toDoItemDto.ProjectId = project.Id;
             toDoItemDto.ProjectTitle = project.Title;
             toDoItemDto.ProjectDescription = project.Description;
-            
+
             return toDoItemDto;
         }
+
+        public async Task<bool> UpdateToDoItemAsync(CreateUpdateToDoItemDto input)
+        {
+            var toDoItem = await _toDoItemRepository.GetAsync(input.Id);
+
+            await _toDoManager.UpdatToDoItem(toDoItem, input.Description, input.DueDate);
+            await _toDoItemRepository.UpdateAsync(toDoItem);
+
+            return true;
+        }
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }

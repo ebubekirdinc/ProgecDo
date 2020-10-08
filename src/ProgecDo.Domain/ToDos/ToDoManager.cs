@@ -19,5 +19,14 @@ namespace ProgecDo.ToDos
                 description,
                 projectId);
         }
+
+
+        public async Task UpdatToDoItem([NotNull] ToDoItem toDoItem, string description, DateTime? dueDate)
+        {
+            // Check.NotNull(author, nameof(author));
+            // Check.NotNullOrWhiteSpace(description, nameof(description));
+
+            toDoItem.UpdatToDoItem(description, dueDate);
+        }
     }
 }

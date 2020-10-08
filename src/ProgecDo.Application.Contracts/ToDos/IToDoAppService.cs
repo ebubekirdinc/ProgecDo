@@ -11,6 +11,8 @@ namespace ProgecDo.ToDos
         Task<ToDoDto> GetToDoListWithToDoItemsByToDoListId(Guid toDoListId);
         Task<bool> AddToDoItem(CreateUpdateToDoItemDto input);
         Task<ShowToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId);
+        Task<bool> UpdateToDoItemAsync(CreateUpdateToDoItemDto input);
+
     }
 
 }
