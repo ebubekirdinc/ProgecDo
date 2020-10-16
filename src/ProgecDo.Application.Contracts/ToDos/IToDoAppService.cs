@@ -15,7 +15,7 @@ namespace ProgecDo.ToDos
         Task<bool> UpdateToDoItemAsync(CreateUpdateToDoItemDto input);
         bool DeleteToDoItem(Guid toDoItemId, Guid toDoListId);
         public Task<ListResultDto<UserLookupDto>> GetUserLookupAsync();
-        Task<bool>  AssignUserToProject(Guid projectId, Guid userId);
+        Task<bool>  AssignUserToToDoItem(Guid toDoItemId, Guid userId);
     }
 
 }

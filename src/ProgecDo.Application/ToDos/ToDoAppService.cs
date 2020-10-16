@@ -18,14 +18,16 @@ namespace ProgecDo.ToDos
         private readonly IProjectRepository _projectRepository;
         private readonly IRepository<AppUser, Guid> _userRepository;
         private readonly IRepository<ToDoItem, Guid> _toDoItemRepository;
+        private readonly IToDoRepository _toDoRepository;
 
         public ToDoAppService(IRepository<ToDo, Guid> repository, ToDoManager toDoManager, IProjectRepository projectRepository,
-            IRepository<AppUser, Guid> userRepository, IRepository<ToDoItem, Guid> toDoItemRepository) : base(repository)
+            IRepository<AppUser, Guid> userRepository, IRepository<ToDoItem, Guid> toDoItemRepository, IToDoRepository toDoRepository) : base(repository)
         {
             _toDoManager = toDoManager;
             _projectRepository = projectRepository;
             _userRepository = userRepository;
             _toDoItemRepository = toDoItemRepository;
+            _toDoRepository = toDoRepository;
         }
 
         public override async Task<ToDoDto> CreateAsync(CreateUpdateToDoDto input)
@@ -125,17 +127,22 @@ namespace ProgecDo.ToDos
         public async Task<ShowToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId)
         {
             var toDoList = await Repository.GetAsync(toDoListId);
-            var toDoItem = await _toDoItemRepository.GetAsync(toDoItemId);
+            // var toDoItem = await _toDoItemRepository.GetAsync(toDoItemId);
             var project = await _projectRepository.GetAsync(x => x.Id == toDoList.ProjectId);
 
-            var toDoItemDto = ObjectMapper.Map<ToDoItem, ShowToDoItemDto>(toDoItem);
+            // var toDoItemDto = ObjectMapper.Map<ToDoItem, ShowToDoItemDto>(toDoItem);
+            var toDoItem = await _toDoRepository.GetToDoItemWithUsersAsync(toDoItemId);
 
-            toDoItemDto.ProjectId = project.Id;
-            toDoItemDto.ProjectTitle = project.Title;
-            toDoItemDto.ProjectDescription = project.Description;
-            toDoItemDto.ToDoListName = toDoList.Name;
+            var showToDoItemDto = ObjectMapper.Map<ToDoItem, ShowToDoItemDto>(toDoItem);
 
-            return toDoItemDto;
+            
+            
+            showToDoItemDto.ProjectId = project.Id;
+            showToDoItemDto.ProjectTitle = project.Title;
+            showToDoItemDto.ProjectDescription = project.Description;
+            showToDoItemDto.ToDoListName = toDoList.Name;
+
+            return showToDoItemDto;
         }
 
         public async Task<bool> UpdateToDoItemAsync(CreateUpdateToDoItemDto input)
@@ -159,10 +166,10 @@ namespace ProgecDo.ToDos
             return true;
         }
         
-        public async Task<bool> AssignUserToProject(Guid projectId, Guid userId)
+        public async Task<bool> AssignUserToToDoItem(Guid toDoItemId, Guid userId)
         {
             var toDoItem = _toDoItemRepository.WithDetails(x => x.ToDoItemUsers)
-                .FirstOrDefault(x => x.Id == projectId);
+                .FirstOrDefault(x => x.Id == toDoItemId);
             toDoItem?.AssignUserToToDoItem(userId);
 
             await _toDoItemRepository.UpdateAsync(toDoItem);

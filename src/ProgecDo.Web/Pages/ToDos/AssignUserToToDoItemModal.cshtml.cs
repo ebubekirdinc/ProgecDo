@@ -35,7 +35,7 @@ namespace ProgecDo.Web.Pages.ToDos
         
         public async Task<IActionResult> OnPostAsync()
         {
-            await _toDoAppService.AssignUserToProject(AssignUserViewModel.ToDoItemId, AssignUserViewModel.UserId);
+            await _toDoAppService.AssignUserToToDoItem(AssignUserViewModel.ToDoItemId, AssignUserViewModel.UserId);
      
             return NoContent();
         }

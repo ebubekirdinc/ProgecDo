@@ -22,7 +22,9 @@ namespace ProgecDo.Projects
 
         public async Task<List<Project>> GetProjectsWithUsersAsync()
         {
-            return await DbContext.Projects.Include(x => x.ProjectUsers).ThenInclude(x => x.User).ToListAsync();
+            return await DbContext.Projects
+                .Include(x => x.ProjectUsers)
+                .ThenInclude(x => x.User).ToListAsync();
         }
     }
 }

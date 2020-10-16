@@ -53,12 +53,12 @@ namespace ProgecDo.Projects
         {
             var projectUsers = await _projectRepository.GetProjectsWithUsersAsync();
 
-            var query = ObjectMapper.Map<List<Project>, List<ProjectDto>>(projectUsers);
+            var projectDtos = ObjectMapper.Map<List<Project>, List<ProjectDto>>(projectUsers);
 
             //  var projectDtos = await AsyncExecuter.ToListAsync(query);
 
 
-            return new ListResultDto<ProjectDto>(query);
+            return new ListResultDto<ProjectDto>(projectDtos);
         }
     }
 }

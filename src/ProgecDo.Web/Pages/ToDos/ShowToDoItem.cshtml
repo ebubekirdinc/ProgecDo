@@ -4,6 +4,28 @@
 @model ProgecDo.Web.Pages.ToDos.ShowToDoItem
 @inject IStringLocalizer<ProgecDoResource> L
 
+<style>
+    .namesContainer {
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      background: #333;
+      cursor: default; 
+      margin-left: 5px;
+    }
+    .namesText {
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 25px;
+      line-height: 50px;
+      font-family: "Helvetica", "serif"
+    }
+    a p{
+      color: black;
+    }     
+</style>
+
 @section scripts
 {
     <abp-script src="/Pages/ToDos/ToDo.js"/>
@@ -51,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <b style="font-size: xx-large">
+                <b class="text-center" style="font-size: xx-large">
                     @Model.ToDoItem.Description
                 </b>
                 <br>
@@ -89,12 +111,30 @@
                         </b>
                     </div>
                     <div class="col-9">
-                        <p style="font-size: larger">ebubekir</p>
+                        <abp-row>
+                            @foreach (var user in Model.ToDoItem.ToDoItemUsers)
+                            {
+                                <div class="namesContainer">
+                                    <div class="namesText">
+                                        @if (string.IsNullOrWhiteSpace(user.User.Name))
+                                        {
+                                            <span> @Html.Raw(user.User.UserName?[0].ToString().ToUpper())</span>
+                                        }
+                                        else
+                                        {
+                                            <span> @Html.Raw(user.User.Name?[0].ToString().ToUpper())@Html.Raw(user.User.Surname?[0].ToString().ToUpper())</span>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </abp-row>
+                        
                         <abp-button class="border-1"
                                     data-id="@Model.ToDoItem.Id"
                                     button-type="Outline_Success"
                                     onclick="assignUserToToDoItem('@Model.ToDoItem.Id')"
-                                    text="@L["AssignUserToToDoItem"].Value"/>
+                                    text="@L["AssignUserToToDoItem"].Value"
+                                    style="margin-top: 10px;"/>
                     </div>
                 </div>
 

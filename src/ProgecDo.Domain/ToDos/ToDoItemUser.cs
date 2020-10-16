@@ -8,7 +8,7 @@ namespace ProgecDo.ToDos
     {
         public virtual Guid ToDoItemId { get; private set; }
         public virtual Guid UserId { get; private set; }
-        public DateTime CreationTime { get; set; }
+        public virtual DateTime CreationTime { get; set; }
 
         public virtual AppUser User { get; set; }
         public virtual ToDoItem ToDoItem { get; set; }

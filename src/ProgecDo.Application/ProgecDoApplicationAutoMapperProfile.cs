@@ -33,6 +33,7 @@ namespace ProgecDo
             
             CreateMap<ToDoItem, ShowToDoItemDto>();
             CreateMap<ToDoItem, ToDoItemDto>();
+            CreateMap<ToDoItemUser , ToDoItemUserDto>();
         }
     }
 }
