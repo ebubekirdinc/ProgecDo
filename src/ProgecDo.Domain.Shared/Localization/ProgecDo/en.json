@@ -19,7 +19,8 @@
     "NewProject": "Add a new project",
     "EditProject": "Update the project",
     "ProgecDo:00002": "There is already a project with the same title: {title}",
-    "ProgecDo:00003": "User is already added to the project",
+    "ProgecDo:00003": "User is already added to this project",
+    "ProgecDo:00004": "User is already added to this to-do",
     "ProjectSuccessfullyCreated": "Project successfully created!",
     "ProjectSuccessfullyUpdated": "Project successfully updated!",
 
@@ -59,6 +60,7 @@
     "EditToDoItem": "Edit to-do",
     "ToDoItemDeletionConfirmationMessage": "Are you sure to delete this to-do item?",
     "AssignUserToToDoItem": "Assign a user",
+    "UserSuccessfullyAddedToToDoItem": "User successfully added to to-do",
 
     "Documents": "Documents",
 

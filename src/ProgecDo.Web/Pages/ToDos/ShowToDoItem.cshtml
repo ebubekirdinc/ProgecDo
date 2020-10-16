@@ -90,9 +90,10 @@
                     </div>
                     <div class="col-9">
                         <p style="font-size: larger">ebubekir</p>
-                        <abp-button class="border-1 CreateToDoItemButton"
+                        <abp-button class="border-1"
                                     data-id="@Model.ToDoItem.Id"
                                     button-type="Outline_Success"
+                                    onclick="assignUserToToDoItem('@Model.ToDoItem.Id')"
                                     text="@L["AssignUserToToDoItem"].Value"/>
                     </div>
                 </div>

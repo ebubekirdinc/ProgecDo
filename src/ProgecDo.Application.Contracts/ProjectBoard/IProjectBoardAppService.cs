@@ -9,7 +9,6 @@ namespace ProgecDo.ProjectBoard
     {
         Task<ProjectBoardDto> GetProjectBoardAsync(Guid id);
         Task<bool> AssignUserToProject(Guid projectId, Guid userId);
-        
         public Task<ListResultDto<UserLookupDto>> GetUserLookupAsync();
     }
 }

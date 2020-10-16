@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq; 
+using System.Linq;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 
@@ -84,7 +84,7 @@ namespace ProgecDo.ToDos
         {
             Note = note;
         }
-        
+
         private void SetOrder(int order)
         {
             Order = order;
@@ -99,7 +99,7 @@ namespace ProgecDo.ToDos
         {
             if (ToDoItemUsers.Any(x => x.UserId == userId))
             {
-                // throw new UserAlreadyAssignedToToDoItemUser();
+                throw new UserAlreadyAssignedToToDoItemException();
             }
             else
             {

@@ -44,7 +44,8 @@ namespace ProgecDo.ProjectBoard
 
         public async Task<bool> AssignUserToProject(Guid projectId, Guid userId)
         {
-            var project = _projectRepository.WithDetails(x => x.ProjectUsers).FirstOrDefault(x => x.Id == projectId);
+            var project = _projectRepository.WithDetails(x => x.ProjectUsers)
+                .FirstOrDefault(x => x.Id == projectId);
             project?.AssignUserToProject(userId);
 
             await _projectRepository.UpdateAsync(project);

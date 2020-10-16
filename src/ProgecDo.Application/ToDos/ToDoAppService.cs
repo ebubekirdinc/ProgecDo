@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProgecDo.BoardMessages;
+using ProgecDo.ProjectBoard;
 using ProgecDo.Projects;
 using ProgecDo.Users;
 using Volo.Abp.Application.Dtos;
@@ -43,7 +44,7 @@ namespace ProgecDo.ToDos
         {
             var project = await _projectRepository.GetAsync(x => x.Id == projectId);
 
-            var query = from toDo in Repository.WithDetails(x=>x.ToDoItems)
+            var query = from toDo in Repository.WithDetails(x => x.ToDoItems)
                     .Where(x => x.ProjectId == projectId)
                 join user in _userRepository on toDo.CreatorId equals user.Id
                 select new ToDoDto
@@ -55,7 +56,7 @@ namespace ProgecDo.ToDos
                     ToDoListCreatorUserName = user.UserName,
                     ToDoListCreatorName = user.Name,
                     ToDoListCreatorSurname = user.Surname,
-                    ToDoItems =ObjectMapper.Map<List<ToDoItem>, List<ToDoItemDto>>(toDo.ToDoItems) 
+                    ToDoItems = ObjectMapper.Map<List<ToDoItem>, List<ToDoItemDto>>(toDo.ToDoItems)
                 };
 
             var queryResult = await AsyncExecuter.ToListAsync(query);
@@ -146,27 +147,34 @@ namespace ProgecDo.ToDos
 
             return true;
         }
-        
+
         public bool DeleteToDoItem(Guid toDoItemId, Guid toDoListId)
         {
             var toDo = Repository
                 .WithDetails(x => x.ToDoItems)
-                .FirstOrDefault(x => x.Id == toDoListId); 
+                .FirstOrDefault(x => x.Id == toDoListId);
 
             toDo?.DeleteToDoItem(toDoItemId);
-            
+
             return true;
         }
         
+        public async Task<bool> AssignUserToProject(Guid projectId, Guid userId)
+        {
+            var toDoItem = _toDoItemRepository.WithDetails(x => x.ToDoItemUsers)
+                .FirstOrDefault(x => x.Id == projectId);
+            toDoItem?.AssignUserToToDoItem(userId);
+
+            await _toDoItemRepository.UpdateAsync(toDoItem);
+
+            return true;
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        public async Task<ListResultDto<UserLookupDto>> GetUserLookupAsync()
+        {
+            var users = await _userRepository.GetListAsync();
+
+            return new ListResultDto<UserLookupDto>(ObjectMapper.Map<List<AppUser>, List<UserLookupDto>>(users));
+        }
     }
 }

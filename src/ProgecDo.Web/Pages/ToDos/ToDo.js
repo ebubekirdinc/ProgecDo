@@ -1,5 +1,6 @@
 let l = abp.localization.getResource('ProgecDo');
 let editToDoItemModal = new abp.ModalManager(abp.appPath + 'ToDos/EditToDoItemModal');
+let assignUserToToDoItemModal = new abp.ModalManager(abp.appPath + 'ToDos/AssignUserToToDoItemModal');
 
 $(function () {
 
@@ -30,6 +31,12 @@ $(function () {
         createToDoItemModal.open({toDoListId: id});
         e.preventDefault();
     });
+
+    assignUserToToDoItemModal.onResult(function () {
+        abp.notify.info(
+            l('UserSuccessfullyAddedToToDoItem')
+        );
+    });
 });
 
 function editToDoItemDropdown(toDoListId, toDoItemId) {
@@ -44,4 +51,8 @@ function deleteToDoItemDropdown(toDoItemId, toDoListId) {
             });
         }
     });
+}
+
+function assignUserToToDoItem(id) {
+    assignUserToToDoItemModal.open({toDoItemId: id});
 }
