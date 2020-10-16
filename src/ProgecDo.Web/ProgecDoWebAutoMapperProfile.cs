@@ -39,8 +39,9 @@ namespace ProgecDo.Web
             CreateMap<EditBoardMessageModal.EditBoardMessageViewModel, CreateUpdateBoardMessageDto>();
 
             CreateMap<CreateListModal.NewToDoListViewModel, CreateUpdateToDoDto>();
-            CreateMap<ToDoListDto, Pages.ToDos.Index.ToDosViewModel>();
-            CreateMap<ToDoListWithToDoItemsDto, Pages.ToDos.Index.ToDoListWithToDoItemsViewModel>();
+            CreateMap<ToDoListDto, Pages.ToDos.Index.ToDoListViewModel>();
+            CreateMap<ToDoDto, Pages.ToDos.Index.ToDoViewModel>();
+            CreateMap<ToDoItemDto, Pages.ToDos.Index.ToDoItemViewModel>();
             CreateMap<ToDoDto, ShowToDoList.ShowToDoListViewModel>();
             CreateMap<ToDoItemDto, ShowToDoList.ToDoItemViewModel>();
             CreateMap<ToDoDto, EditToDoListModal.EditToDoListViewModel>();

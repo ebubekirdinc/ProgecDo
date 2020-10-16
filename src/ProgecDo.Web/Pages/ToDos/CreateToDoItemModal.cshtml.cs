@@ -37,15 +37,15 @@ namespace ProgecDo.Web.Pages.ToDos
         
         public class CreateUpdateToDoItemViewModel
         {
-            // [Required] 
-            // [StringLength(ToDoConsts.MaxNameLength, MinimumLength = ToDoConsts.MinNameLength)]
-            // [DisplayName("NameOfToDoList")]
-            // public string Name { get; set; }
-
-            [DisplayName("DescriptionOfToDoItem")] 
-            [StringLength(ToDoConsts.MaxToDoItemDescriptionLength)]
-            [TextArea]
+            [Required] 
+            [StringLength(ToDoConsts.MaxToDoItemDescriptionLength, MinimumLength = ToDoConsts.MinToDoItemDescriptionLength)]
+            [DisplayName("DescriptionOfToDoItem")]
             public string Description { get; set; }
+
+            [DisplayName("NoteOfToDoItem")] 
+            [StringLength(ToDoConsts.MaxToDoItemNoteLength)]
+            [TextArea]
+            public string Note { get; set; }
             
             [DisplayName("DueOn")] 
             [DataType(DataType.Date)]

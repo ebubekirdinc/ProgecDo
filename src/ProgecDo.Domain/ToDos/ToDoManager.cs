@@ -21,12 +21,11 @@ namespace ProgecDo.ToDos
         }
 
 
-        public async Task UpdatToDoItem([NotNull] ToDoItem toDoItem, string description, DateTime? dueDate)
-        {
-            // Check.NotNull(author, nameof(author));
-            // Check.NotNullOrWhiteSpace(description, nameof(description));
+        public async Task UpdatToDoItem([NotNull] ToDoItem toDoItem, string description, string note, DateTime? dueDate)
+        { 
+            Check.NotNullOrWhiteSpace(description, nameof(description));
 
-            toDoItem.UpdatToDoItem(description, dueDate);
+            toDoItem.UpdatToDoItem(description,note, dueDate);
         }
     }
 }

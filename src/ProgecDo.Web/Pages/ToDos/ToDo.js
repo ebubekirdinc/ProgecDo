@@ -13,7 +13,7 @@ $(function () {
         e.preventDefault();
     });
 
-    $('#EditToDoListButton').click(function (e) {
+    $('.EditToDoListButton').click(function (e) {
         let id = this.getAttribute("data-id");
         editListModal.open({toDoListId: id});
         e.preventDefault();
@@ -25,6 +25,11 @@ $(function () {
         e.preventDefault();
     });
 
+    $('.CreateToDoItemButton').click(function (e) {
+        let id = this.getAttribute("data-id");
+        createToDoItemModal.open({toDoListId: id});
+        e.preventDefault();
+    });
 });
 
 function editToDoItemDropdown(toDoListId, toDoItemId) {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProgecDo.BoardMessages;
@@ -42,9 +43,10 @@ namespace ProgecDo.ToDos
         {
             var project = await _projectRepository.GetAsync(x => x.Id == projectId);
 
-            var query = from toDo in Repository.Where(x => x.ProjectId == projectId)
+            var query = from toDo in Repository.WithDetails(x=>x.ToDoItems)
+                    .Where(x => x.ProjectId == projectId)
                 join user in _userRepository on toDo.CreatorId equals user.Id
-                select new ToDoListWithToDoItemsDto
+                select new ToDoDto
                 {
                     Id = toDo.Id,
                     Name = toDo.Name,
@@ -53,7 +55,7 @@ namespace ProgecDo.ToDos
                     ToDoListCreatorUserName = user.UserName,
                     ToDoListCreatorName = user.Name,
                     ToDoListCreatorSurname = user.Surname,
-                    // CommentCount = _boardMessageCommentRepository.Count(x => x.ParentId == toDo.Id)
+                    ToDoItems =ObjectMapper.Map<List<ToDoItem>, List<ToDoItemDto>>(toDo.ToDoItems) 
                 };
 
             var queryResult = await AsyncExecuter.ToListAsync(query);
@@ -63,7 +65,7 @@ namespace ProgecDo.ToDos
                 ProjectId = projectId,
                 ProjectTitle = project.Title,
                 ProjectDescription = project.Description,
-                ToDoListWithToDoItems = queryResult.OrderByDescending(x => x.CreationTime).ToList()
+                ToDo = queryResult.OrderByDescending(x => x.CreationTime).ToList()
             };
         }
 
@@ -130,6 +132,7 @@ namespace ProgecDo.ToDos
             toDoItemDto.ProjectId = project.Id;
             toDoItemDto.ProjectTitle = project.Title;
             toDoItemDto.ProjectDescription = project.Description;
+            toDoItemDto.ToDoListName = toDoList.Name;
 
             return toDoItemDto;
         }
@@ -138,7 +141,7 @@ namespace ProgecDo.ToDos
         {
             var toDoItem = await _toDoItemRepository.GetAsync(input.Id);
 
-            await _toDoManager.UpdatToDoItem(toDoItem, input.Description, input.DueDate);
+            await _toDoManager.UpdatToDoItem(toDoItem, input.Description, input.Note, input.DueDate);
             await _toDoItemRepository.UpdateAsync(toDoItem);
 
             return true;

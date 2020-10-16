@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using System.Linq; 
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 
@@ -29,10 +29,10 @@ namespace ProgecDo.ToDos
             {
             };
         }
-        
+
         public void AddToDoItem(string description, DateTime? dueDate)
         {
-            Check.NotNullOrWhiteSpace(description, nameof(Description), ToDoConsts.MaxToDoItemDescriptionLength );
+            Check.NotNullOrWhiteSpace(description, nameof(Description), ToDoConsts.MaxToDoItemDescriptionLength);
 
             ToDoItems.Add(new ToDoItem(Id, description, dueDate));
         }
@@ -47,15 +47,18 @@ namespace ProgecDo.ToDos
     {
         public virtual Guid ParentId { get; private set; }
         public virtual string Description { get; private set; }
+        public virtual string Note { get; private set; }
         public virtual DateTime? DueDate { get; private set; }
-        
+        public virtual int Order { get; private set; }
+        public virtual bool IsDone { get; private set; }
+        public virtual List<ToDoItemUser> ToDoItemUsers { get; protected set; }
+
         public virtual ToDo ToDo { get; set; }
 
         public ToDoItem()
         {
-            
         }
-        
+
         internal ToDoItem(Guid parentId, string description, DateTime? dueDate)
         {
             ParentId = parentId;
@@ -63,18 +66,45 @@ namespace ProgecDo.ToDos
             DueDate = dueDate;
         }
 
-        internal ToDoItem UpdatToDoItem(string description, DateTime? dueDate)
+        internal ToDoItem UpdatToDoItem(string description, string note, DateTime? dueDate)
         {
             SetDescription(description);
+            SetNote(note);
             DueDate = dueDate;
-            
+
             return this;
         }
-        
+
         private void SetDescription([NotNull] string description)
         {
-            Description = Check.NotNullOrWhiteSpace(description, nameof(Description), maxLength: ToDoConsts.MaxToDoItemDescriptionLength ); 
+            Description = Check.NotNullOrWhiteSpace(description, nameof(Description), maxLength: ToDoConsts.MaxToDoItemDescriptionLength);
         }
-      
+
+        private void SetNote(string note)
+        {
+            Note = note;
+        }
+        
+        private void SetOrder(int order)
+        {
+            Order = order;
+        }
+
+        private void SetIsDone(bool isDone)
+        {
+            IsDone = isDone;
+        }
+
+        public void AssignUserToToDoItem(Guid userId)
+        {
+            if (ToDoItemUsers.Any(x => x.UserId == userId))
+            {
+                // throw new UserAlreadyAssignedToToDoItemUser();
+            }
+            else
+            {
+                ToDoItemUsers.Add(new ToDoItemUser(Id, userId));
+            }
+        }
     }
 }

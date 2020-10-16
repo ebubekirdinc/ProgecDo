@@ -7,7 +7,9 @@ namespace ProgecDo.ToDos
         
         public const int MaxDescriptionLength = 250;
         
-        // public const int MinToDoItemDescriptionLength = 3;
+        public const int MinToDoItemDescriptionLength = 3;
         public const int MaxToDoItemDescriptionLength = 150;
+        // public const int MinToDoItemNoteLength = 3;
+        public const int MaxToDoItemNoteLength = 250;
     }
 }

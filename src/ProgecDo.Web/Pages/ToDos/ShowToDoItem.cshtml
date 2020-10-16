@@ -17,6 +17,12 @@
                     <li class="breadcrumb-item">
                         <a asp-page="/ProjectBoard/Index" asp-route-projectId="@Model.ToDoItem.ProjectId">@Model.ToDoItem.ProjectTitle</a>
                     </li>
+                    <li class="breadcrumb-item">
+                        <a asp-page="/ToDos/Index" asp-route-projectId="@Model.ToDoItem.ProjectId">@L["Todos"].Value</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-page="/ToDos/ShowToDoList" asp-route-toDoListId="@Model.ToDoItem.ParentId">@Model.ToDoItem.ToDoListName</a>
+                    </li>
                 </ol>
             </nav>
         </div>
@@ -26,7 +32,7 @@
     <div class="col-10 mx-auto">
         <div class="card">
 
-            <div class="card-body">
+            <div class="card-body" style="padding-left: 100px;">
                 <div class="row">
                     <div class="col">
                         @* <h3>  </h3> *@
@@ -34,27 +40,64 @@
                     <div class="btn-group dropleft float-right my-dropdown-dropleft">
                         <button type="button" class="btn btn-outline-primary border-0 my-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-ellipsis-v"></i>
-                        </button> 
-                            <div class="dropdown-menu bg-primary ">
-                                <a class="dropdown-item my-dropdown-item" href="#" onclick="editToDoItemDropdown('@Model.ToDoItem.ParentId','@Model.ToDoItem.Id')">
-                                    <i class="fa fa-pencil"></i><span>&nbsp @L["Edit"].Value</span>
-                                </a>
-                                <a class="dropdown-item my-dropdown-item" href="#" onclick="deleteToDoItemDropdown('@Model.ToDoItem.Id','@Model.ToDoItem.ParentId')">
-                                    <i class="fa fa-trash"></i><span>&nbsp&nbsp @L["Delete"].Value</span>
-                                </a>
-                            </div> 
+                        </button>
+                        <div class="dropdown-menu bg-primary ">
+                            <a class="dropdown-item my-dropdown-item" href="#" onclick="editToDoItemDropdown('@Model.ToDoItem.ParentId','@Model.ToDoItem.Id')">
+                                <i class="fa fa-pencil"></i><span>&nbsp @L["Edit"].Value</span>
+                            </a>
+                            <a class="dropdown-item my-dropdown-item" href="#" onclick="deleteToDoItemDropdown('@Model.ToDoItem.Id','@Model.ToDoItem.ParentId')">
+                                <i class="fa fa-trash"></i><span>&nbsp&nbsp @L["Delete"].Value</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <b style="font-size: xx-large">
+                    @Model.ToDoItem.Description
+                </b>
+                <br>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>
+                            <p class="text-right" style="font-size: larger">Notes</p>
+                        </b>
+                    </div>
+                    <div class="col-9">
+                        <p style="font-size: larger">@Model.ToDoItem.Note</p>
                     </div>
                 </div>
                 <hr>
-                <abp-dynamic-form abp-model="ToDoItem" asp-page="/ToDos/CreateToDoItemModal">
-                    @* <abp-modal> *@
-                    @*     <abp-modal-header style="background-image: url('/img/modalHeader.jpg');" title="@L["AddToDoItem"].Value"></abp-modal-header> *@
-                    @*     <abp-modal-body> *@
-                    <abp-form-content/>
-                    @*     </abp-modal-body> *@
-                    @*     <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer> *@
-                    @* </abp-modal> *@
-                </abp-dynamic-form>
+                <div class="row">
+                    <div class="col-3">
+                        <b>
+                            <p class="text-right" style="font-size: larger">Due on</p>
+                        </b>
+                    </div>
+                    <div class="col-9">
+                        <p style="font-size: larger">
+                            <i class="fa fa-calendar" aria-hidden="true" style="font-weight: normal"></i>
+                            @Model.ToDoItem.DueDate?.ToShortDateString()
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <b>
+                            <p class="text-right" style="font-size: larger">Assgined to</p>
+                        </b>
+                    </div>
+                    <div class="col-9">
+                        <p style="font-size: larger">ebubekir</p>
+                        <abp-button class="border-1 CreateToDoItemButton"
+                                    data-id="@Model.ToDoItem.Id"
+                                    button-type="Outline_Success"
+                                    text="@L["AssignUserToToDoItem"].Value"/>
+                    </div>
+                </div>
+
+                <br>
             </div>
         </div>
     </div>

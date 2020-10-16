@@ -1,6 +1,7 @@
 @page
 @using Microsoft.Extensions.Localization
 @using ProgecDo.Localization
+@using ProgecDo.Projects
 @model ProgecDo.Web.Pages.ToDos.Index
 @inject IStringLocalizer<ProgecDoResource> L
 
@@ -35,45 +36,37 @@
                                 icon="plus"
                                 data-id="@Model.ToDos.ProjectId"
                                 button-type="Success"
-                                text="@L["NewBoardMessage"].Value"/>
+                                text="@L["NewToDoList"].Value"/>
 
                 </div>
 
                 <div style="  left:50%" class="text-center">
-
-                    <h3 class="card-title">@L["Messages"].Value</h3>
+                    <h2 class="card-title">@L["Todos"].Value</h2>
                 </div>
 
                 <hr>
 
-                @foreach (var toDo   in Model.ToDos.ToDoListWithToDoItems)
+                @foreach (var toDo in Model.ToDos.ToDo)
                 {
-                    <a href="/ToDos/ShowToDoList?toDoListId=@toDo.Id">@toDo.Name</a>
-                   
-                    
-// @*                                     <div class="row boardMessage" data-id="@message.Id"> *@
-// @*                                         <div class="col-md-1"> *@
-// @*                                             <div class="namesContainer"> *@
-// @*                                                 <div class="namesText"> *@
-// @*                                                     @message.UserName[0].ToString().ToUpper()@message.UserSurname?[0].ToString().ToUpper() *@
-// @*                                                 </div> *@
-// @*                                             </div> *@
-// @*                                         </div> *@
-// @*                                         <div class="col-md-11"> *@
-// @*                                             <div> *@
-// @*                                                 <b> @message.Title</b> *@
-// @*                                             </div> *@
-// @*                                             <div style="padding-bottom: 10px;"> *@
-// @*                                                 <span class="card-subtitle text-muted">@message.UserName @message.UserSurname - @message.CreationTime - @Html.Raw(message.Content.Length < 50 ? message.Content : message.Content.Left(50)) </span> *@
-// @*                                                 @if (message.CommentCount > 0) *@
-// @*                                                 { *@
-// @*                                                     <div class="float-right"> *@
-// @*                                                         <span class="badge badge-pill badge-primary" style="font-size: medium">@message.CommentCount</span> *@
-// @*                                                     </div> *@
-// @*                                                 } *@
-// @*                                             </div> *@
-// @*                                         </div> *@
-// @*                                     </div> *@
+                    <a href="/ToDos/ShowToDoList?toDoListId=@toDo.Id">
+                        <i class="fa fa-bars" aria-hidden="true" style="margin-right: 5px;"></i>
+                       <u><b style="font-size: larger">@toDo.Name</b></u>
+                    </a>
+                    <p> @toDo.Description</p>
+                                         
+                    @foreach (var toDoItem in toDo.ToDoItems)
+                    {
+                        <span>
+                            <i class="fa fa-bars" aria-hidden="true" style="margin-right: 5px;"></i>
+                            @toDoItem.Description
+                        </span>
+                        <br>
+                    }
+                    <br>
+                    <abp-button class="border-1 CreateToDoItemButton" 
+                                data-id="@toDo.Id"
+                                button-type="Outline_Success"
+                                text="@L["AddToDoItem"].Value"/>
                     <hr>
                 }
             </div>

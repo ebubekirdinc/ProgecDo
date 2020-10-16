@@ -9,8 +9,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 namespace ProgecDo.Web.Pages.ToDos
 {
     public class ShowToDoItem : ProgecDoPageModel
-    {
-        [BindProperty] 
+    { 
         public ToDoItemViewModel ToDoItem { get; set; }
         
         private readonly IToDoAppService _toDoAppService;
@@ -29,16 +28,13 @@ namespace ProgecDo.Web.Pages.ToDos
         {
             [HiddenInput] 
             public Guid Id { get; set; }
-            
-            // [Required] 
-            // [StringLength(ToDoConsts.MaxNameLength, MinimumLength = ToDoConsts.MinNameLength)]
-            // [DisplayName("NameOfToDoList")]
-            // public string Name { get; set; }
-
-            [DisplayName("DescriptionOfToDoItem")] 
-            // [StringLength(ToDoConsts.MaxToDoItemDescriptionLength)]
-            [TextArea]
+              
+            [DisplayName("DescriptionOfToDoItem")]
             public string Description { get; set; }
+
+            [DisplayName("NoteOfToDoItem")] 
+            [TextArea]
+            public string Note { get; set; }
             
             [DisplayName("DueOn")] 
             [DataType(DataType.Date)]
@@ -54,6 +50,7 @@ namespace ProgecDo.Web.Pages.ToDos
             
             [HiddenInput] 
             public string ProjectDescription { get; set; }
+            public string ToDoListName { get; set; }
         }
     }
 }

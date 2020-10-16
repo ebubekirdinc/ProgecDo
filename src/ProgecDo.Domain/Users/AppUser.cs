@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ProgecDo.Projects;
+using ProgecDo.ToDos;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.Users;
 
@@ -58,6 +59,7 @@ namespace ProgecDo.Users
          */
         public virtual string ProfileColor { get; set; }
         public virtual List<ProjectUser> ProjectUsers { get; set; }
+        public virtual List<ToDoItemUser> ToDoItemUsers { get; set; }
 
         private AppUser()
         {

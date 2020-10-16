@@ -51,11 +51,14 @@
     "EditToDoList": "Edit to-do list",
     "NameOfToDoList": "Name this to-do list",
     "DescriptionOfToDoList": "Add extra details or description",
-    "DescriptionOfToDoItem": "Add extra details or description",
+    
+    "DescriptionOfToDoItem": "Describe this to-do",
+    "NoteOfToDoItem": "Add extra details or description",
     "DueOn": "Due On", 
     "AddToDoItem": "Add a to-do",
     "EditToDoItem": "Edit to-do",
     "ToDoItemDeletionConfirmationMessage": "Are you sure to delete this to-do item?",
+    "AssignUserToToDoItem": "Assign a user",
 
     "Documents": "Documents",
 

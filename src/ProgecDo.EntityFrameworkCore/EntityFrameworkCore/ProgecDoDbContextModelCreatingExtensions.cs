@@ -85,7 +85,7 @@ namespace ProgecDo.EntityFrameworkCore
                 b.ToTable(ProgecDoConsts.DbTablePrefix + "ToDos", ProgecDoConsts.DbSchema);
 
                 b.Property(x => x.Name).IsRequired().HasMaxLength(ToDoConsts.MaxNameLength);
-                b.Property(x => x.Description).IsRequired().HasMaxLength(ToDoConsts.MaxDescriptionLength);
+                b.Property(x => x.Description).HasMaxLength(ToDoConsts.MaxDescriptionLength);
                 b.Property(x => x.ProjectId).IsRequired();
                 b.HasMany(x => x.ToDoItems)
                     .WithOne(x => x.ToDo)
@@ -101,10 +101,31 @@ namespace ProgecDo.EntityFrameworkCore
                 b.ToTable(ProgecDoConsts.DbTablePrefix + "ToDoItems", ProgecDoConsts.DbSchema);
 
                 b.Property(x => x.Description).IsRequired().HasMaxLength(ToDoConsts.MaxToDoItemDescriptionLength);
+                b.Property(x => x.Note).HasMaxLength(ToDoConsts.MaxToDoItemNoteLength);
                 b.Property(x => x.ParentId).IsRequired();
                 b.Property(x => x.DueDate).HasColumnType("Date");
+                b.Property(x => x.Order).IsRequired();
+
+                b.HasMany(x => x.ToDoItemUsers)
+                    .WithOne(x => x.ToDoItem)
+                    .HasForeignKey(x => x.ToDoItemId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 b.ConfigureByConvention();
+            });
+
+            builder.Entity<ToDoItemUser>(b =>
+            {
+                b.ToTable(ProgecDoConsts.DbTablePrefix + "ToDoItemUsers", ProgecDoConsts.DbSchema);
+
+                b.HasKey(p => new {p.ToDoItemId, p.UserId});
+                if (isMigrationDbContext)
+                {
+                    b.Ignore(t => t.User);
+                }
+
+                b.ConfigureByConvention(); //auto configure for the base class props
             });
         }
     }

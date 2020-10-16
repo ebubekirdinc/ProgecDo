@@ -35,6 +35,7 @@ namespace ProgecDo.EntityFrameworkCore
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<ToDoItem> ToDoItems { get; set; }
+        public DbSet<ToDoItemUser> ToDoItemUsers { get; set; }
 
         public ProgecDoDbContext(DbContextOptions<ProgecDoDbContext> options)
             : base(options)
@@ -58,7 +59,16 @@ namespace ProgecDo.EntityFrameworkCore
                  * Also see the ProgecDoEfCoreEntityExtensionMappings class
                  */
                 b.Property(x => x.ProfileColor).HasMaxLength(AppUserConsts.MaxProfileColorLength);
-                b.HasMany(x => x.ProjectUsers).WithOne(x => x.User).HasForeignKey(x => x.UserId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+                b.HasMany(x => x.ProjectUsers)
+                    .WithOne(x => x.User)
+                    .HasForeignKey(x => x.UserId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
+                b.HasMany(x => x.ToDoItemUsers)
+                    .WithOne(x => x.User)
+                    .HasForeignKey(x => x.UserId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             /* Configure your own tables/entities inside the ConfigureProgecDo method */

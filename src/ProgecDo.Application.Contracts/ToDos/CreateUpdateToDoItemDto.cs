@@ -8,12 +8,12 @@ namespace ProgecDo.ToDos
     {
         public Guid Id { get; set; }
 
-        // [Required]
-        // [StringLength(ToDoConsts.MaxNameLength, MinimumLength = ToDoConsts.MinNameLength)]
-        // public string Name { get; set; }
-
-        [StringLength(ToDoConsts.MaxToDoItemDescriptionLength)]
+        [Required]
+        [StringLength(ToDoConsts.MaxToDoItemDescriptionLength, MinimumLength = ToDoConsts.MinToDoItemDescriptionLength)]
         public string Description { get; set; }
+
+        [StringLength(ToDoConsts.MaxToDoItemNoteLength)]
+        public string Note { get; set; }
  
         public virtual DateTime? DueDate { get; private set; }
         

@@ -240,7 +240,6 @@ namespace ProgecDo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
@@ -298,7 +297,6 @@ namespace ProgecDo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
@@ -311,6 +309,9 @@ namespace ProgecDo.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnName("LastModificationTime")
                         .HasColumnType("datetime2");
@@ -318,6 +319,14 @@ namespace ProgecDo.Migrations
                     b.Property<Guid?>("LastModifierId")
                         .HasColumnName("LastModifierId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("ParentId")
                         .HasColumnType("uniqueidentifier");
@@ -327,6 +336,22 @@ namespace ProgecDo.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("ToDoItems");
+                });
+
+            modelBuilder.Entity("ProgecDo.ToDos.ToDoItemUser", b =>
+                {
+                    b.Property<Guid>("ToDoItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ToDoItemId", "UserId");
+
+                    b.ToTable("ToDoItemUsers");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -2109,6 +2134,15 @@ namespace ProgecDo.Migrations
                     b.HasOne("ProgecDo.ToDos.ToDo", "ToDo")
                         .WithMany("ToDoItems")
                         .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProgecDo.ToDos.ToDoItemUser", b =>
+                {
+                    b.HasOne("ProgecDo.ToDos.ToDoItem", "ToDoItem")
+                        .WithMany("ToDoItemUsers")
+                        .HasForeignKey("ToDoItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
