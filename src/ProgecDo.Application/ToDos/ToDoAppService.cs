@@ -45,30 +45,31 @@ namespace ProgecDo.ToDos
         public async Task<ToDoListDto> GetToDoListByProjectId(Guid projectId)
         {
             var project = await _projectRepository.GetAsync(x => x.Id == projectId);
+            var query = await _toDoRepository.GetToDoListsByProjectId(projectId);
 
-            var query = from toDo in Repository.WithDetails(x => x.ToDoItems)
-                    .Where(x => x.ProjectId == projectId)
-                join user in _userRepository on toDo.CreatorId equals user.Id
-                select new ToDoDto
-                {
-                    Id = toDo.Id,
-                    Name = toDo.Name,
-                    Description = toDo.Description,
-                    CreationTime = toDo.CreationTime,
-                    ToDoListCreatorUserName = user.UserName,
-                    ToDoListCreatorName = user.Name,
-                    ToDoListCreatorSurname = user.Surname,
-                    ToDoItems = ObjectMapper.Map<List<ToDoItem>, List<ToDoItemDto>>(toDo.ToDoItems)
-                };
-
-            var queryResult = await AsyncExecuter.ToListAsync(query);
+            // var qusery = from toDo in Repository.WithDetails(x => x.ToDoItems)
+            //         .Where(x => x.ProjectId == projectId)
+            //     join user in _userRepository on toDo.CreatorId equals user.Id
+            //     select new ToDoDto
+            //     {
+            //         Id = toDo.Id,
+            //         Name = toDo.Name,
+            //         Description = toDo.Description,
+            //         CreationTime = toDo.CreationTime,
+            //         ToDoListCreatorUserName = user.UserName,
+            //         ToDoListCreatorName = user.Name,
+            //         ToDoListCreatorSurname = user.Surname,
+            //         ToDoItems = ObjectMapper.Map<List<ToDoItem>, List<ToDoItemDto>>(toDo.ToDoItems)
+            //     };
+            //
+            // var queryResult = await AsyncExecuter.ToListAsync(query);
 
             return new ToDoListDto
             {
                 ProjectId = projectId,
                 ProjectTitle = project.Title,
                 ProjectDescription = project.Description,
-                ToDo = queryResult.OrderByDescending(x => x.CreationTime).ToList()
+                ToDos = ObjectMapper.Map<List<ToDo>, List<ToDoDto>>(query)
             };
         }
 
@@ -124,7 +125,7 @@ namespace ProgecDo.ToDos
             return true;
         }
 
-        public async Task<ShowToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId)
+        public async Task<ToDoItemDto> GetToDoItemById(Guid toDoListId, Guid toDoItemId)
         {
             var toDoList = await Repository.GetAsync(toDoListId);
             // var toDoItem = await _toDoItemRepository.GetAsync(toDoItemId);
@@ -133,10 +134,9 @@ namespace ProgecDo.ToDos
             // var toDoItemDto = ObjectMapper.Map<ToDoItem, ShowToDoItemDto>(toDoItem);
             var toDoItem = await _toDoRepository.GetToDoItemWithUsersAsync(toDoItemId);
 
-            var showToDoItemDto = ObjectMapper.Map<ToDoItem, ShowToDoItemDto>(toDoItem);
+            var showToDoItemDto = ObjectMapper.Map<ToDoItem, ToDoItemDto>(toDoItem);
 
-            
-            
+
             showToDoItemDto.ProjectId = project.Id;
             showToDoItemDto.ProjectTitle = project.Title;
             showToDoItemDto.ProjectDescription = project.Description;
@@ -165,7 +165,7 @@ namespace ProgecDo.ToDos
 
             return true;
         }
-        
+
         public async Task<bool> AssignUserToToDoItem(Guid toDoItemId, Guid userId)
         {
             var toDoItem = _toDoItemRepository.WithDetails(x => x.ToDoItemUsers)
@@ -176,7 +176,7 @@ namespace ProgecDo.ToDos
 
             return true;
         }
-        
+
         public async Task<ListResultDto<UserLookupDto>> GetUserLookupAsync()
         {
             var users = await _userRepository.GetListAsync();

@@ -1,7 +1,6 @@
 @page
 @using Microsoft.Extensions.Localization
-@using ProgecDo.Localization
-@using ProgecDo.Projects
+@using ProgecDo.Localization 
 @model ProgecDo.Web.Pages.ToDos.Index
 @inject IStringLocalizer<ProgecDoResource> L
 
@@ -9,6 +8,29 @@
 {
     <abp-script src="/Pages/ToDos/ToDo.js"/>
 }
+
+<style>
+    .namesContainer {
+      width: 25px;
+      height: 25px;
+      border-radius: 50px;
+      background: #333;
+      cursor: default; 
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .namesText {
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 12px;
+      line-height: 25px;
+      font-family: "Helvetica", "serif"
+    }
+    a p{
+      color: black;
+    }     
+</style>
 
 <div class="row">
     <div class="col">
@@ -29,45 +51,89 @@
         <div class="card">
 
             <div class="card-body">
-                <div style=" float:left;">
 
-                    <abp-button id="NewToDoListButton"
-                                class="border-0"
-                                icon="plus"
-                                data-id="@Model.ToDos.ProjectId"
-                                button-type="Success"
-                                text="@L["NewToDoList"].Value"/>
+                <div class="row">
+
+                    <div class="col-2">
+                        <abp-button id="NewToDoListButton"
+                                    class="border-0"
+                                    icon="plus"
+                                    data-id="@Model.ToDos.ProjectId"
+                                    button-type="Success"
+                                    text="@L["NewToDoList"].Value"/>
+
+                    </div>
+
+                    <div class="col-10">
+                        <div style="  left:50%" class="text-center">
+                            <h2 class="card-title">@L["Todos"].Value</h2>
+                        </div>
+                    </div>
 
                 </div>
+                <hr class="bold-hr">
 
-                <div style="  left:50%" class="text-center">
-                    <h2 class="card-title">@L["Todos"].Value</h2>
-                </div>
-
-                <hr>
-
-                @foreach (var toDo in Model.ToDos.ToDo)
+                @foreach (var toDo in Model.ToDos.ToDos)
                 {
-                    <a href="/ToDos/ShowToDoList?toDoListId=@toDo.Id">
-                        <i class="fa fa-bars" aria-hidden="true" style="margin-right: 5px;"></i>
-                       <u><b style="font-size: larger">@toDo.Name</b></u>
-                    </a>
-                    <p> @toDo.Description</p>
-                                         
-                    @foreach (var toDoItem in toDo.ToDoItems)
-                    {
-                        <span>
-                            <i class="fa fa-bars" aria-hidden="true" style="margin-right: 5px;"></i>
-                            @toDoItem.Description
-                        </span>
-                        <br>
-                    }
-                    <br>
-                    <abp-button class="border-1 CreateToDoItemButton" 
-                                data-id="@toDo.Id"
-                                button-type="Outline_Success"
-                                text="@L["AddToDoItem"].Value"/>
-                    <hr>
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-10">
+
+                            <a href="/ToDos/ShowToDoList?toDoListId=@toDo.Id">
+                                <i class="fa fa-bars" aria-hidden="true" style="margin-right: 5px;"></i>
+                                <u>
+                                    <b style="font-size: larger">@toDo.Name</b>
+                                </u>
+                            </a>
+                            <p> @toDo.Description</p>
+
+                            @foreach (var toDoItem in toDo.ToDoItems)
+                            {
+                                <span>
+                                    <i class="fa fa-bars" aria-hidden="true" style="margin-right: 5px;"></i>
+                                    @toDoItem.Description
+                                    @if (toDoItem.DueDate != null)
+                                    {
+                                        <i class="fa fa-calendar" aria-hidden="true" style="margin-left: 5px; font-weight: normal"></i>
+                                        @toDoItem.DueDate?.ToShortDateString()
+                                    }
+                                </span>
+                                <br>
+                                @foreach (var user in toDoItem.ToDoItemUsers)
+                                {
+                                    <div class="namesContainer">
+                                        <div class="namesText">
+                                            @if (string.IsNullOrWhiteSpace(user.User.Name))
+                                            {
+                                                <span> @Html.Raw(user.User.UserName?[0].ToString().ToUpper())</span>
+                                            }
+                                            else
+                                            {
+                                                <span> @Html.Raw(user.User.Name?[0].ToString().ToUpper())@Html.Raw(user.User.Surname?[0].ToString().ToUpper())</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    @if (string.IsNullOrWhiteSpace(user.User.Name))
+                                    {
+                                        <span> @Html.Raw(user.User.UserName)</span>
+                                    }
+                                    else
+                                    {
+                                        <span> @Html.Raw(user.User.Name) @Html.Raw(string.IsNullOrWhiteSpace(user.User.Surname) ? "" : user.User.Surname[0].ToString().ToUpper() + ".")</span>
+                                    }
+                                }
+                            }
+
+                            <br>
+                            <abp-button class="border-1 CreateToDoItemButton"
+                                        data-id="@toDo.Id"
+                                        button-type="Outline_Success"
+                                        text="@L["AddToDoItem"].Value"/>
+                            <hr>
+                        </div>
+                    </div>
                 }
             </div>
         </div>

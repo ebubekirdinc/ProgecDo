@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ProgecDo.ToDos;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
+using System.Collections.Generic; 
+using System.Threading.Tasks; 
+using ProgecDo.ToDos; 
 
 namespace ProgecDo.Web.Pages.ToDos
 {
@@ -22,23 +18,26 @@ namespace ProgecDo.Web.Pages.ToDos
 
         public async Task OnGet(Guid toDoListId, Guid toDoItemId)
         {
-            ToDoItem = ObjectMapper.Map<ShowToDoItemDto, ToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId, toDoItemId));
+            ToDoItem = ObjectMapper.Map<ToDoItemDto, ToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId, toDoItemId));
         }
 
         public class ToDoItemViewModel
         {
-            [HiddenInput] public Guid ParentId { get; set; }
+            // [HiddenInput] 
+            public Guid ParentId { get; set; }
 
-            [HiddenInput] public Guid Id { get; set; }
+            // [HiddenInput] 
+            public Guid Id { get; set; }
 
-            [DisplayName("DescriptionOfToDoItem")] public string Description { get; set; }
+            // [DisplayName("DescriptionOfToDoItem")] 
+            public string Description { get; set; }
 
-            [DisplayName("NoteOfToDoItem")]
-            [TextArea]
+            // [DisplayName("NoteOfToDoItem")]
+            // [TextArea]
             public string Note { get; set; }
 
-            [DisplayName("DueOn")]
-            [DataType(DataType.Date)]
+            // [DisplayName("DueOn")]
+            // [DataType(DataType.Date)]
             public DateTime? DueDate { get; set; }
 
             public int Order { get; set; }
@@ -46,10 +45,13 @@ namespace ProgecDo.Web.Pages.ToDos
 
             public List<ToDoItemUserViewModel> ToDoItemUsers { get; set; }
 
-            [HiddenInput] public Guid ProjectId { get; set; }
-            [HiddenInput] public string ProjectTitle { get; set; }
+            // [HiddenInput] 
+            public Guid ProjectId { get; set; }
+            // [HiddenInput] 
+            public string ProjectTitle { get; set; }
 
-            [HiddenInput] public string ProjectDescription { get; set; }
+            // [HiddenInput] 
+            public string ProjectDescription { get; set; }
             public string ToDoListName { get; set; }
         }
 

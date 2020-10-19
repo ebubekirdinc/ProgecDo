@@ -51,7 +51,7 @@ namespace ProgecDo.ToDos
         public virtual DateTime? DueDate { get; private set; }
         public virtual int Order { get; private set; }
         public virtual bool IsDone { get; private set; }
-        public virtual List<ToDoItemUser> ToDoItemUsers { get; protected set; }
+        public virtual List<ToDoItemUser> ToDoItemUsers { get; set; }
 
         public virtual ToDo ToDo { get; set; }
 

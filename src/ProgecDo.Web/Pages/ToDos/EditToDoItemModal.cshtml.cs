@@ -21,7 +21,7 @@ namespace ProgecDo.Web.Pages.ToDos
 
         public async Task OnGetAsync(Guid toDoListId, Guid toDoItemId)
         {
-            CreateUpdateToDoItem = ObjectMapper.Map<ShowToDoItemDto, CreateUpdateToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId, toDoItemId));
+            CreateUpdateToDoItem = ObjectMapper.Map<ToDoItemDto, CreateUpdateToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId, toDoItemId));
         }
 
         public async Task<IActionResult> OnPostAsync()

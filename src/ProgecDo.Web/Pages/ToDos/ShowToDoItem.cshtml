@@ -6,19 +6,20 @@
 
 <style>
     .namesContainer {
-      width: 50px;
-      height: 50px;
+      width: 25px;
+      height: 25px;
       border-radius: 50px;
       background: #333;
       cursor: default; 
       margin-left: 5px;
+      margin-right: 5px;
     }
     .namesText {
       width: 100%;
       text-align: center;
       color: white;
-      font-size: 25px;
-      line-height: 50px;
+      font-size: 12px;
+      line-height: 25px;
       font-family: "Helvetica", "serif"
     }
     a p{
@@ -54,35 +55,40 @@
     <div class="col-10 mx-auto">
         <div class="card">
 
-            <div class="card-body" style="padding-left: 100px;">
+            <div class="card-body">
                 <div class="row">
-                    <div class="col">
-                        @* <h3>  </h3> *@
+
+                    <div class="col-11 text-center">
+                        <b style="font-size: xx-large">
+                            @Model.ToDoItem.Description
+                        </b>
                     </div>
-                    <div class="btn-group dropleft float-right my-dropdown-dropleft">
-                        <button type="button" class="btn btn-outline-primary border-0 my-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-ellipsis-v"></i>
-                        </button>
-                        <div class="dropdown-menu bg-primary ">
-                            <a class="dropdown-item my-dropdown-item" href="#" onclick="editToDoItemDropdown('@Model.ToDoItem.ParentId','@Model.ToDoItem.Id')">
-                                <i class="fa fa-pencil"></i><span>&nbsp @L["Edit"].Value</span>
-                            </a>
-                            <a class="dropdown-item my-dropdown-item" href="#" onclick="deleteToDoItemDropdown('@Model.ToDoItem.Id','@Model.ToDoItem.ParentId')">
-                                <i class="fa fa-trash"></i><span>&nbsp&nbsp @L["Delete"].Value</span>
-                            </a>
+
+                    <div class="col-1">
+                        <div class="btn-group dropleft float-right my-dropdown-dropleft">
+                            <button type="button" class="btn btn-outline-primary border-0 my-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu bg-primary ">
+                                <a class="dropdown-item my-dropdown-item" href="#" onclick="editToDoItemDropdown('@Model.ToDoItem.ParentId','@Model.ToDoItem.Id')">
+                                    <i class="fa fa-pencil"></i><span>&nbsp @L["Edit"].Value</span>
+                                </a>
+                                <a class="dropdown-item my-dropdown-item" href="#" onclick="deleteToDoItemDropdown('@Model.ToDoItem.Id','@Model.ToDoItem.ParentId')">
+                                    <i class="fa fa-trash"></i><span>&nbsp&nbsp @L["Delete"].Value</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                <b class="text-center" style="font-size: xx-large">
-                    @Model.ToDoItem.Description
-                </b>
+
                 <br>
                 <hr>
                 <br>
                 <div class="row">
                     <div class="col-3">
                         <b>
-                            <p class="text-right" style="font-size: larger">Notes</p>
+                            <p class="text-right" style="font-size: larger">@L["Notes"].Value</p>
                         </b>
                     </div>
                     <div class="col-9">
@@ -93,13 +99,16 @@
                 <div class="row">
                     <div class="col-3">
                         <b>
-                            <p class="text-right" style="font-size: larger">Due on</p>
+                            <p class="text-right" style="font-size: larger">@L["DueOn"].Value</p>
                         </b>
                     </div>
                     <div class="col-9">
                         <p style="font-size: larger">
-                            <i class="fa fa-calendar" aria-hidden="true" style="font-weight: normal"></i>
-                            @Model.ToDoItem.DueDate?.ToShortDateString()
+                            @if (Model.ToDoItem.DueDate != null)
+                            {
+                                <i class="fa fa-calendar" aria-hidden="true" style="font-weight: normal"></i>
+                                @Model.ToDoItem.DueDate?.ToShortDateString()
+                            }
                         </p>
                     </div>
                 </div>
@@ -107,7 +116,7 @@
                 <div class="row">
                     <div class="col-3">
                         <b>
-                            <p class="text-right" style="font-size: larger">Assgined to</p>
+                            <p class="text-right" style="font-size: larger">@L["AssignedTo"].Value</p>
                         </b>
                     </div>
                     <div class="col-9">
@@ -126,9 +135,17 @@
                                         }
                                     </div>
                                 </div>
+                                @if (string.IsNullOrWhiteSpace(user.User.Name))
+                                {
+                                    <span> @Html.Raw(user.User.UserName)</span>
+                                }
+                                else
+                                {
+                                    <span> @Html.Raw(user.User.Name) @Html.Raw(string.IsNullOrWhiteSpace(user.User.Surname) ? "" : user.User.Surname[0].ToString().ToUpper() + ".")</span>
+                                }
                             }
                         </abp-row>
-                        
+
                         <abp-button class="border-1"
                                     data-id="@Model.ToDoItem.Id"
                                     button-type="Outline_Success"

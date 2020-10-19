@@ -33,7 +33,7 @@
         <div class="card">
 
             <div class="card-body">
-                <div style=" float:left;" >
+                <div style=" float:left;">
 
                     <abp-button id="NewBoardMessageButton"
                                 class="border-0"
@@ -43,14 +43,13 @@
                                 text="@L["NewBoardMessage"].Value"/>
 
                 </div>
-                
-                <div style="  left:50%"  class="text-center">
-                    
+
+                <div style="  left:50%" class="text-center">
+
                     <h3 class="card-title">@L["Messages"].Value</h3>
                 </div>
-                
 
-                <hr>
+                <hr class="bold-hr">
 
                 @foreach (var message in Model.BoardMessage.BoardMessageList)
                 {

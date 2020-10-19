@@ -21,3 +21,11 @@
     margin-left: 15px;
     margin-bottom: 15px;
 }
+
+/*hr*/
+.bold-hr{
+    border: none;
+    height: 3px; 
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */ 
+}
