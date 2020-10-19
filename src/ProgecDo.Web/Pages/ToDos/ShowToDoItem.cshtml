@@ -4,24 +4,7 @@
 @model ProgecDo.Web.Pages.ToDos.ShowToDoItem
 @inject IStringLocalizer<ProgecDoResource> L
 
-<style>
-    .namesContainer {
-      width: 25px;
-      height: 25px;
-      border-radius: 50px;
-      background: #333;
-      cursor: default; 
-      margin-left: 5px;
-      margin-right: 5px;
-    }
-    .namesText {
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-size: 12px;
-      line-height: 25px;
-      font-family: "Helvetica", "serif"
-    }
+<style> 
     a p{
       color: black;
     }     
@@ -123,8 +106,8 @@
                         <abp-row>
                             @foreach (var user in Model.ToDoItem.ToDoItemUsers)
                             {
-                                <div class="namesContainer">
-                                    <div class="namesText">
+                                <div class="namesContainerSmall">
+                                    <div class="namesTextSmall">
                                         @if (string.IsNullOrWhiteSpace(user.User.Name))
                                         {
                                             <span> @Html.Raw(user.User.UserName?[0].ToString().ToUpper())</span>

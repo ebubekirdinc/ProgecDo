@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Generic; 
-using System.Threading.Tasks; 
-using ProgecDo.ToDos; 
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ProgecDo.ToDos;
+using ProgecDo.Web.Models;
 
 namespace ProgecDo.Web.Pages.ToDos
 {
@@ -21,50 +22,33 @@ namespace ProgecDo.Web.Pages.ToDos
             ToDoItem = ObjectMapper.Map<ToDoItemDto, ToDoItemViewModel>(await _toDoAppService.GetToDoItemById(toDoListId, toDoItemId));
         }
 
-        public class ToDoItemViewModel
+        public class ToDoItemViewModel : AuditedEntityViewModel<Guid>
         {
-            // [HiddenInput] 
             public Guid ParentId { get; set; }
-
-            // [HiddenInput] 
-            public Guid Id { get; set; }
-
-            // [DisplayName("DescriptionOfToDoItem")] 
             public string Description { get; set; }
-
-            // [DisplayName("NoteOfToDoItem")]
-            // [TextArea]
             public string Note { get; set; }
-
-            // [DisplayName("DueOn")]
-            // [DataType(DataType.Date)]
             public DateTime? DueDate { get; set; }
-
             public int Order { get; set; }
             public bool IsDone { get; set; }
 
-            public List<ToDoItemUserViewModel> ToDoItemUsers { get; set; }
+            public List<Index.ToDoItemUserViewModel> ToDoItemUsers { get; set; }
 
-            // [HiddenInput] 
             public Guid ProjectId { get; set; }
-            // [HiddenInput] 
             public string ProjectTitle { get; set; }
-
-            // [HiddenInput] 
             public string ProjectDescription { get; set; }
             public string ToDoListName { get; set; }
         }
 
-        public class ToDoItemUserViewModel
+        public class ToDoItemUserViewModel : EntityViewModel
         {
             public Guid ToDoItemId { get; set; }
             public Guid UserId { get; set; }
             public DateTime CreationTime { get; set; }
 
-            public AppUserViewModel User { get; set; }
+            public Index.AppUserViewModel User { get; set; }
         }
 
-        public class AppUserViewModel
+        public class AppUserViewModel : FullAuditedEntityViewModel
         {
             public string UserName { get; set; }
             public string Name { get; set; }

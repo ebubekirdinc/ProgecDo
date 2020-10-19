@@ -41,7 +41,6 @@ namespace ProgecDo.Web.Pages.ToDos
             public string ProjectDescription { get; set; }
             public string ToDoListCreatorUserName { get; set; }
             public string ToDoListCreatorName { get; set; }
-
             public string ToDoListCreatorSurname { get; set; } 
         }
 

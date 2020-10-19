@@ -46,25 +46,21 @@ namespace ProgecDo.Web
             // CreateMap<List<ToDoItemDto>, List<Pages.ToDos.Index.ToDoItemViewModel>>();
             
             CreateMap<ToDoItemUserDto, Pages.ToDos.Index.ToDoItemUserViewModel>();
-            CreateMap<List<ToDoItemUserDto>, List<Pages.ToDos.Index.ToDoItemUserViewModel>>();
+            // CreateMap<List<ToDoItemUserDto>, List<Pages.ToDos.Index.ToDoItemUserViewModel>>();
             CreateMap<AppUserDto, Pages.ToDos.Index.AppUserViewModel>();
             
-            CreateMap<ToDoDto, ShowToDoList.ShowToDoListViewModel>();
+            CreateMap<ToDoDto, ShowToDoList.ToDoViewModel>();
             CreateMap<ToDoItemDto, ShowToDoList.ToDoItemViewModel>();
+            
             CreateMap<ToDoDto, EditToDoListModal.EditToDoListViewModel>();
             CreateMap<EditToDoListModal.EditToDoListViewModel, CreateUpdateToDoDto>();
 
             CreateMap<CreateToDoItemModal.CreateUpdateToDoItemViewModel, CreateUpdateToDoItemDto>();
-            CreateMap<ToDoItemDto, ShowToDoItem.ToDoItemViewModel>();
             CreateMap<ToDoItemDto, EditToDoItemModal.CreateUpdateToDoItemViewModel>();
             CreateMap<EditToDoItemModal.CreateUpdateToDoItemViewModel, CreateUpdateToDoItemDto>();
+            CreateMap<ToDoItemDto, ShowToDoItem.ToDoItemViewModel>();
             CreateMap<ToDoItemUserDto, ShowToDoItem.ToDoItemUserViewModel>();
-            CreateMap<AppUserDto, ShowToDoItem.AppUserViewModel>();
-            // AutoMapper.AssertConfigurationIsValid();
-            // var configuration = new MapperConfiguration(cfg =>
-            //     cfg.CreateMap<List<ToDoItemDto>, List<Pages.ToDos.Index.ToDoItemViewModel>>());
-            //
-            // configuration.AssertConfigurationIsValid();
+            CreateMap<AppUserDto, ShowToDoItem.AppUserViewModel>(); 
             
         }
     }

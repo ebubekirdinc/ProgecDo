@@ -45,24 +45,7 @@ namespace ProgecDo.ToDos
         public async Task<ToDoListDto> GetToDoListByProjectId(Guid projectId)
         {
             var project = await _projectRepository.GetAsync(x => x.Id == projectId);
-            var query = await _toDoRepository.GetToDoListsByProjectId(projectId);
-
-            // var qusery = from toDo in Repository.WithDetails(x => x.ToDoItems)
-            //         .Where(x => x.ProjectId == projectId)
-            //     join user in _userRepository on toDo.CreatorId equals user.Id
-            //     select new ToDoDto
-            //     {
-            //         Id = toDo.Id,
-            //         Name = toDo.Name,
-            //         Description = toDo.Description,
-            //         CreationTime = toDo.CreationTime,
-            //         ToDoListCreatorUserName = user.UserName,
-            //         ToDoListCreatorName = user.Name,
-            //         ToDoListCreatorSurname = user.Surname,
-            //         ToDoItems = ObjectMapper.Map<List<ToDoItem>, List<ToDoItemDto>>(toDo.ToDoItems)
-            //     };
-            //
-            // var queryResult = await AsyncExecuter.ToListAsync(query);
+            var query = await _toDoRepository.GetToDoListsByProjectId(projectId); 
 
             return new ToDoListDto
             {
